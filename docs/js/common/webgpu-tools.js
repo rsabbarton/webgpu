@@ -37,7 +37,7 @@ class WebGPUTools {
 
     createModule(source){
         log('Creating Shader Module')
-        return device.createShaderModule(samples.redTriangleSample)
+        return device.createShaderModule(source)
     }
 }
 
