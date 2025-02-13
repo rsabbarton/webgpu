@@ -3,7 +3,8 @@
 import {log as log} from 'logger'
 log('Logger Initialised!')
 
-
+import {WG as wg} from 'webgpu-tools'
+import {WGSL as wgsl} from 'wgsl-tools'
 
 
 
@@ -14,16 +15,15 @@ main()
 
 
 async function main(){
-    let canvas = setCanvasDimensions()
-    const context = canvas.getContext('webgpu')
-    log('Getting Adapter')
-    const adapter = await navigator.gpu?.requestAdapter()
-    log('Getting Device')
-    const device = await adapter?.requestDevice()
-    log(adapter)
-    log(device)
-
     
+    if(!await wg.isSupported()){
+        log('WebGPU Not Supported')
+        return 1
+    }
+    
+    let canvas = setCanvasDimensions()
+    
+    await wg.init(canvas)
 
 }
 
