@@ -1,0 +1,31 @@
+{
+  "name": "webgpu",
+  "version": "1.0.0",
+  "description": "WebGPU Learning and Testing",
+  "keywords": [
+    "webgpu",
+    "test",
+    "learn",
+    "example",
+    "tutorial"
+  ],
+  "homepage": "https://github.com/rsabbarton/webgpu#readme",
+  "bugs": {
+    "url": "https://github.com/rsabbarton/webgpu/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rsabbarton/webgpu.git"
+  },
+  "license": "ISC",
+  "author": "Richard Sabbarton",
+  "type": "commonjs",
+  "main": "./scripts/test-server.sh",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "./scripts/test-server.sh",
+    "deploy": "./scripts/deploy.sh"
+  }
+}
