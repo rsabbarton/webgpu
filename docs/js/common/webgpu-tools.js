@@ -35,9 +35,9 @@ class WebGPUTools {
         log('context configured')
     }
 
-    createModule(source){
+    createShaderModule(source){
         log('Creating Shader Module')
-        return device.createShaderModule(source)
+        return this.device.createShaderModule(source)
     }
 }
 
