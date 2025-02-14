@@ -1,4 +1,5 @@
 !#/bin/bash
+node ./scripts/create-index.mjs
 
 cp -r src/* docs/
 git add .
