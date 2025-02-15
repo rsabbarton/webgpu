@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes</title>
+</head>
+<body>
+    <h1>Notes</h1>
+    <p>General High Level Process for rendering with WebGPU:</p>
+    <ol>
+        <li>Check if WebGPU is supported</li>
+        <li>Create a canvas</li>
+        <li>Get GPU adapter</li>
+        <li>Get GPU device</li>
+        <li>Get canvas context</li>
+        <li>Create Shader Module(s) for Vertex and fragment shader</li>
+        <li>Create a render pipeline</li>
+        <li>Create a renderPassDescriptor</li>
+        <li>Render
+            <ol>
+                <li>Get a command encoder</li>
+                <li>Start render pass</li>
+                <li>Set pass render pipeline</li>
+                <li>Draw vertex buffer x times</li>
+                <li>End encoding to create command buffer</li>
+                <li>Submit command buffer to device queue</li>
+            </ol>
+        </li>
+    </ol>
+</html>
