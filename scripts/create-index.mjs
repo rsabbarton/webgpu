@@ -10,11 +10,11 @@ files = files.filter(file => fs.lstatSync(path.join(sourceFolder, file)).isDirec
                              file !== "css" && 
                              file !== "images")
 
-files = files.map(file => file + "/index.html")
+//files = files.map(file => file + "/index.html")
 
 console.log(files)
 
-let links = files.map(file => `<a href="${file}">${file}</a>`).join("\n")
+let links = files.map(file => `<a href="${file}/index.html">${file}</a><br>`).join("\n")
 
 console.log(links)
 
