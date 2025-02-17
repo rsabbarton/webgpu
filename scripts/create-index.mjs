@@ -1,8 +1,10 @@
 import fs from 'fs'
 import path from 'path'
+import { execSync } from 'node:child_process'
 
 let sourceFolder = "/home/richard/dev/webgpu/src"
-let engineDocsFolder = path.join(sourceFolder, "Engine Documentation")
+let engineDocsFolder = path.join(sourceFolder, "Engine-Documentation")
+let notesFolder = path.join(sourceFolder, "Notes")
 
 let files = fs.readdirSync(sourceFolder)
 
@@ -78,13 +80,31 @@ mdFiles.forEach(file => {
     let htmlFile = file.replace(".md", ".html")
     let mdPath = path.join(engineDocsFolder, file)
     let htmlPath = path.join(engineDocsFolder, htmlFile)
+    let header = path.join(engineDocsFolder, 'templates', 'header.html')
 
-    let pandoc = `pandoc --toc -H templates/header.html --metadata title="Engine Documentation" -f markdown -t html ${mdPath} > ${htmlPath}`
+    let pandoc = `pandoc --toc -H ${header} --metadata title="Engine Documentation" -f markdown -t html ${mdPath} > ${htmlPath}`
     console.log(pandoc)
-    let result = require('child_process').execSync(pandoc)
-    console.log(result.toString())
-    
+    let result = execSync(pandoc)
+    console.log(result.toString()) 
 })
-//files = files.map(file => file + "/index.html")
 
+mdFiles = fs.readdirSync(notesFolder)
+
+mdFiles = mdFiles.filter(file => file.endsWith(".md"))
+
+mdFiles.forEach(file => {
+    let htmlFile = file.replace(".md", ".html")
+    let mdPath = path.join(notesFolder, file)
+    let htmlPath = path.join(notesFolder, htmlFile)
+    let header = path.join(notesFolder, 'templates', 'header.html')
+
+    let pandoc = `pandoc --toc -H ${header} --metadata title="Notes" -f markdown -t html ${mdPath} > ${htmlPath}`
+    console.log(pandoc)
+    let result = execSync(pandoc)
+    console.log(result.toString()) 
+})
+
+
+
+//files = files.map(file => file + "/index.html")
 // pandoc --toc -H templates/header.html --metadata title="Engine Documentation" -f markdown -t html API-Reference.md > API-Reference.html
