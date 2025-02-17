@@ -1,0 +1,40 @@
+html, body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0 auto;
+    max-width: 36em;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 5px;
+    padding-bottom: 0px;
+    hyphens: auto;
+    overflow-wrap: break-word;
+    text-rendering: optimizeLegibility;
+    font-kerning: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', sans-serif;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+.title {
+    font-size: 2em;
+    font-weight: 700;
+    background-color: firebrick;
+    color: white;
+    margin-top: 0px;
+    padding: 30px;
+}
+
+header {
+    background-color: firebrick;
+    color: white;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+nav {
+    padding: 30px;
+    margin-bottom: 10px;
+}

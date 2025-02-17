@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 
 let sourceFolder = "/home/richard/dev/webgpu/src"
+let engineDocsFolder = path.join(sourceFolder, "Engine Documentation")
 
 let files = fs.readdirSync(sourceFolder)
 
@@ -11,6 +12,8 @@ files = files.filter(file => fs.lstatSync(path.join(sourceFolder, file)).isDirec
                              file !== "images")
 
 //files = files.map(file => file + "/index.html")
+
+// pandoc --toc -H templates/header.html --metadata title="Engine Documentation" -f markdown -t html API-Reference.md > API-Reference.html
 
 console.log(files)
 
@@ -66,3 +69,22 @@ fs.closeSync(indexFile)
 
 console.log("Index file created at " + indexPath)
 
+
+let mdFiles = fs.readdirSync(engineDocsFolder)
+
+mdFiles = mdFiles.filter(file => file.endsWith(".md"))
+
+mdFiles.forEach(file => {
+    let htmlFile = file.replace(".md", ".html")
+    let mdPath = path.join(engineDocsFolder, file)
+    let htmlPath = path.join(engineDocsFolder, htmlFile)
+
+    let pandoc = `pandoc --toc -H templates/header.html --metadata title="Engine Documentation" -f markdown -t html ${mdPath} > ${htmlPath}`
+    console.log(pandoc)
+    let result = require('child_process').execSync(pandoc)
+    console.log(result.toString())
+    
+})
+//files = files.map(file => file + "/index.html")
+
+// pandoc --toc -H templates/header.html --metadata title="Engine Documentation" -f markdown -t html API-Reference.md > API-Reference.html
