@@ -1,7 +1,7 @@
 html, body {
     font-family: 'Roboto', sans-serif;
     margin: 0 auto;
-    max-width: 36em;
+    max-width: 760px;
     padding-left: 50px;
     padding-right: 50px;
     padding-top: 5px;
@@ -10,17 +10,18 @@ html, body {
     overflow-wrap: break-word;
     text-rendering: optimizeLegibility;
     font-kerning: normal;
+    font-size: medium;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Roboto', sans-serif;
-    margin-top: 1.5em;
-    margin-bottom: 0.5em;
+    margin-top: 1em;
+    margin-bottom: 0.2em;
 }
 
 .title {
-    font-size: 2em;
-    font-weight: 700;
+    font-size: 40px;
+    font-weight: bolder;
     background-color: firebrick;
     color: white;
     margin-top: 0px;
@@ -31,10 +32,32 @@ header {
     background-color: firebrick;
     color: white;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
 }
 
 nav {
-    padding: 30px;
+    padding-left: 30px;
     margin-bottom: 10px;
+}
+
+
+pre {
+    background-color: darkmagenta;
+    color: greenyellow;
+    overflow-x: scroll;
+    padding: 5px;
+    padding: '0';
+    overflow-wrap: unset;
+    text-wrap-mode: nowrap;
+    scroll-behavior: smooth;
+}
+
+code {
+    overflow: scroll;
+    display: contents;
+    width: fit-content;
+    text-wrap: inherit;
+    margin: 0px;
+    padding: 0px;
+    font-size: 12px;
 }

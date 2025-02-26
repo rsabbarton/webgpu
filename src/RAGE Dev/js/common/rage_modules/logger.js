@@ -2,10 +2,16 @@
 
 class Logger {
     constructor(){
-
+        // CODE: INCOMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+        
     }
 
     log(a){
+        // CODE: INCOMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
         let outputDiv = document.getElementById('text-output')
         let div = document.createElement('div')
         div.innerText = a

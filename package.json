@@ -26,6 +26,11 @@
   },
   "scripts": {
     "test": "./scripts/test-server.sh",
-    "deploy": "./scripts/deploy.sh"
+    "deploy": "./scripts/deploy.sh",
+    "update": "./scripts/update-content.sh"
+  },
+  "dependencies": {
+    "nodemon": "^3.1.9",
+    "watcher": "^2.3.1"
   }
 }

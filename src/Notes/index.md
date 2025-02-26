@@ -53,3 +53,15 @@ as STL (Stereo Lithography) files.
 
  - Simplicity and Power
  - Common recognisable process
+
+## High level process design
+
+1. Instantiate Engine (link to existing canvas)
+ - Engine to check for support and report back
+2. Pre-load textures
+3. Pre-load vertex arrays
+4. Configure Renderer
+5. Render
+
+
+

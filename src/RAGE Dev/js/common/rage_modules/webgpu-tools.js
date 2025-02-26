@@ -1,13 +1,19 @@
 
-import {log as log} from 'logger'
+import {log} from './logger.js'
 
 
 class WebGPUTools {
     constructor(){
-
+        // CODE: INCOMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+        
     }
 
     async isSupported(){
+        // CODE: INCOMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
         const adapter = await navigator.gpu?.requestAdapter()
         const device = await adapter?.requestDevice()   
         if(adapter && device) return true
@@ -15,32 +21,46 @@ class WebGPUTools {
     }
 
     async init(canvas){
+        // CODE: INCOMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
         log(canvas)
         this.canvas = canvas
+        
         this.adapter = await navigator.gpu?.requestAdapter()
+        log(this.adaptor)
         this.device = await this.adapter?.requestDevice()   
+        log(this.device)
         if(!this.adapter || !this.device){
             log('WebGPU Not Supported in this browser')
             return false
         }
 
+        
+
         this.context = canvas.getContext('webgpu')
-        this.presentationFormat = navigator.gpu.getPreferredCanvasFormat()
+        log(this.context)
+        this.presentationFormat = await navigator.gpu.getPreferredCanvasFormat()
+        log(this.presentationFormat)
         this.context.configure({
             device: this.device,
             format: this.presentationFormat,
         })
 
-        log(this.context)
-        log('context configured')
+        log('WebGPU Tools Init() Completed!')
+
+        return this
     }
 
-    createShaderModule(source){
+    async createShaderModule(source){
+        // CODE: INCOMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
         log('Creating Shader Module')
-        return this.device.createShaderModule(source)
+        return await this.device.createShaderModule(source)
     }
 }
 
-const WG = new WebGPUTools()
+const WEBGPUTools = new WebGPUTools()
 
-export {WG}
+export {WEBGPUTools}
