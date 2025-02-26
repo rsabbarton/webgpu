@@ -170,6 +170,8 @@
 <li><a href="#engine-planning">Engine Planning</a>
 <ul>
 <li><a href="#basic-design">Basic Design</a></li>
+<li><a href="#high-level-process-design">High level process
+design</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -225,5 +227,18 @@ as well as STL (Stereo Lithography) files.</p>
 <li>Simplicity and Power</li>
 <li>Common recognisable process</li>
 </ul>
+<h2 id="high-level-process-design">High level process design</h2>
+<ol type="1">
+<li>Instantiate Engine (link to existing canvas)</li>
+</ol>
+<ul>
+<li>Engine to check for support and report back</li>
+</ul>
+<ol start="2" type="1">
+<li>Pre-load textures</li>
+<li>Pre-load vertex arrays</li>
+<li>Configure Renderer</li>
+<li>Render</li>
+</ol>
 </body>
 </html>

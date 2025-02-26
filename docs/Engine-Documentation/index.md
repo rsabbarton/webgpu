@@ -1,7 +1,8 @@
+# Rage Documentation
 
-## Richard's Alternative GPU Engine (a.k.a. RAGE)
+### Richard's Awesome Graphics Engine <br> (a.k.a. RAGE)
 
-The RAGE Engine will be referred to as "the engine" or just "engine" in the code.  This is primarily because RAGE is not very descriptive and will likely change to something else as it evolves.
+The RAGE Engine will be referred to as "rage" or "the engine" or just "engine" in the code.  These terms should be considered synonymous.
 
 
 ## What is The Engine
@@ -11,4 +12,5 @@ The Engine is a WebGPU only (check browser support) graphics engine.  It is not 
 ## Resources
 
  - [API Reference](API-Reference.html)
+ - [Matrix module](Matrix-Module.html)
  - [Samples](../index.html)

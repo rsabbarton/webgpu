@@ -165,31 +165,56 @@
 </header>
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#engine-api-reference">Engine API Reference</a>
+<li><a href="#matrix-module-reference">Matrix Module Reference</a>
 <ul>
-<li><a href="#instantiation">Instantiation</a></li>
-<li><a href="#initialisation">Initialisation</a></li>
+<li><a href="#create-a-matrix">Create a Matrix</a></li>
+<li><a href="#quick-start-guide">Quick Start Guide</a>
+<ul>
+<li><a href="#create-a-single-identity-matrix">Create a single Identity
+Matrix</a></li>
+<li><a href="#translate-a-matrix">Translate a Matrix</a></li>
+</ul></li>
+<li><a href="#matrix-functions-and-attributes">Matrix Functions and
+Attributes</a></li>
 </ul></li>
 </ul>
 </nav>
-<h1 id="engine-api-reference">Engine API Reference</h1>
-<h2 id="instantiation">Instantiation</h2>
-<p>The Engine should have a single instance for each renderer
-implementation. If you are using it with multiple canvasses then you can
-have separate renderer.</p>
-<p>Because we are using a feature that is only supported in later
-browsers we are OK to require the use of JavaScript ES6 and the modules
-functionality. In order to allow module imports your application script
-must be launched as an ES6 Module.</p>
-<pre><code>&lt;script type=&quot;module&quot; src=&#39;my-app.js&#39;&gt;&lt;/script&gt;</code></pre>
-<p>You can then use module imports within your my-app.js file:</p>
-<pre><code>import RAGE from &#39;modules/rage.js&#39;</code></pre>
-<p>You will need a rendering canvas within your parent HTML page. You
-can fix this or created it dynamically. You must pass the canvas object
-(not the ID) to the RAGE constructor:</p>
-<pre><code>let myAwesomeCanvas = document.getElementById(&#39;my-awesome-canvas&#39;);
-const rage = new RAGE(myawesomeCanvas)</code></pre>
-<h2 id="initialisation">Initialisation</h2>
+<h1 id="matrix-module-reference">Matrix Module Reference</h1>
+<h2 id="create-a-matrix">Create a Matrix</h2>
+<p>If you are using the Rage Engine then you can import the matrix
+module from there. You can also use the built-in function within Rage to
+access the Matrix Module without importing it.</p>
+<p>Alternatively, if you want to use the matrix module on its own you
+can import the matrix.js file directly.</p>
+<pre><code>import Matrix from &#39;modules/rage.js</code></pre>
+<pre><code>import Matrix from &#39;modules/matrix.js&#39;</code></pre>
+<pre><code>const myMatrix = rage.createMatrix()</code></pre>
+<p>The Matrix object will be created with the default/identity matrix
+loaded.</p>
+<pre><code>1   0   0   0
+0   1   0   0
+0   0   1   0
+0   0   0   1</code></pre>
+<p>The matrix is stored in the matrix member. This is a Float32Array(16)
+array and can be accessed using the matrix member of the Matrix
+object.</p>
+<pre><code>let myIdentityMatrix = new Matrix()
+console.log(myIdentityMatrix.matrix)
+
+// Matrix {matrix: Float32Array(16)}</code></pre>
+<h2 id="quick-start-guide">Quick Start Guide</h2>
+<h3 id="create-a-single-identity-matrix">Create a single Identity
+Matrix</h3>
+<pre><code>const matrix = new Matrix()</code></pre>
+<h3 id="translate-a-matrix">Translate a Matrix</h3>
+<p>To translate a matrix you can either translate an existing matrix by
+x,y,z or you can create a standalone translation matrix that can be
+re-used.</p>
+<pre><code>const matrix = new Matrix()
+matrix.translate(20,30,40)
+</code></pre>
+<h2 id="matrix-functions-and-attributes">Matrix Functions and
+Attributes</h2>
 <p>After importing Rage to your project you will then need to initialise
 it. While doing this, you can also check if Rage is supported in your
 browser:</p>

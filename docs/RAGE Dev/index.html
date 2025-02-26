@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test 3 - WIP</title>
+        <script type="importmap">
+            {
+                "imports": {
+                  "rage": "./js/common/rage.js"
+                }
+            }
+        </script>
+        <script src="./js/common/vecmat-test.js"></script>
+        <script src="./js/common/unit_tests.js"></script>
+        <script type="module" defer>
+            import './js/app.js'
+        </script>
+        <style>
+            #text-output {
+                padding: 5px;
+                margin: 0px;
+                width: 100%;
+                min-height: 800px;
+                background-color: darkslateblue;
+                color: greenyellow;
+                font-family: 'Courier New', Courier, monospace;
+                font-size: small;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="test-canvas"></canvas>
+
+        <br>
+        <br>
+        <br>
+        <div id="text-output">
+
+        </div>
+    </body>
+</html>
