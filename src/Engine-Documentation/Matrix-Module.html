@@ -175,7 +175,14 @@ Matrix</a></li>
 <li><a href="#translate-a-matrix">Translate a Matrix</a></li>
 </ul></li>
 <li><a href="#matrix-functions-and-attributes">Matrix Functions and
-Attributes</a></li>
+Attributes</a>
+<ul>
+<li><a href="#matrix-creation-functions">Matrix Creation
+Functions</a></li>
+<li><a href="#matrix-modifier-functions">Matrix Modifier
+Functions</a></li>
+<li><a href="#matrix-stacks">Matrix Stacks</a></li>
+</ul></li>
 </ul></li>
 </ul>
 </nav>
@@ -215,13 +222,131 @@ matrix.translate(20,30,40)
 </code></pre>
 <h2 id="matrix-functions-and-attributes">Matrix Functions and
 Attributes</h2>
-<p>After importing Rage to your project you will then need to initialise
-it. While doing this, you can also check if Rage is supported in your
-browser:</p>
-<pre><code>if(rage.isSupported){
-    rage.init()
-} else {
-    console.log(&#39;WebGPU Cannot be loaded in this browser!&#39;)
-}</code></pre>
+<h3 id="matrix-creation-functions">Matrix Creation Functions</h3>
+<p>Matrix creation functions overwrite the existing contents of your
+matrix.</p>
+<h4 id="createidentity">createIdentity()</h4>
+<p>Creates an Identity Matrix.</p>
+<pre><code>1   0   0   0
+0   1   0   0
+0   0   1   0
+0   0   0   1</code></pre>
+<h4
+id="createtranslationfloat-x-floaty-float-z">createTranslation(float: x,
+float:y, float: z)</h4>
+<p>Creates a translation matrix that can be used to translate other
+matrices without being modified itself.</p>
+<pre><code>let translation = new Matrix()
+translation.createTranslation(30.0, 40.0, 50.0)</code></pre>
+<pre><code>1 0 0 30
+0 1 0 40
+0 0 1 50
+0 0 0 1</code></pre>
+<h4
+id="createrotationfloat-angleinradians-const-axis">createRotation(float:
+angleInRadians, const: axis)</h4>
+<ul>
+<li>angleInRadians: (Required) Amount of rotation to apply. Use negative
+values to rotate in the opposite direction.</li>
+<li>axis: (Required) One of X_AXIS, Y_AXIS or Z_AXIS. The axis around
+which to rotate.</li>
+</ul>
+<h4 id="createscale">createScale()</h4>
+<h4 id="createorthographic">createOrthographic()</h4>
+<h4 id="createperspective">createPerspective()</h4>
+<h4 id="createprojection">createProjection()</h4>
+<h3 id="matrix-modifier-functions">Matrix Modifier Functions</h3>
+<h4 id="multiplybymatrix-matrix">multiplyBy(Matrix: matrix)</h4>
+<p>Multiplies the matrix by the matrix object provided. The matrix of
+the provided object is not modified.</p>
+<p>*** NOTE: The order of multiplication impacts the results. ***</p>
+<pre><code>let m = new Matrix()
+m.multiplyBy(rage.createMatrix().createTranslation(20,30,40))
+m.multiplyBy(rage.createMatrix().createTranslation(30,40,50))</code></pre>
+<pre><code>1 0 0 50
+0 1 0 70
+0 0 1 90
+0 0 0 1</code></pre>
+<h4 id="copyfrommatrixmatrix-matrix">copyFromMatrix(Matrix: matrix)</h4>
+<h4
+id="copyfromfloat32arrayfloat32array16-array">copyFromFloat32Array(Float32Array(16):
+array)</h4>
+<h4 id="translatefloat-x-float-y-float-z">translate(float: x, float: y,
+float: z)</h4>
+<p>Applies a translation to the current matrix based on the values
+supplied.</p>
+<h4 id="rotatefloat-radians-int-axis">rotate(float: radians, int:
+axis)</h4>
+<p>Applies rotation to the current matrix. Rotation is applied around a
+specific axis.</p>
+<p>radians defines the angle in radians to apply around the selected
+axis.</p>
+<p>Axis is defined as one of the following:</p>
+<ul>
+<li>X_AXIS</li>
+<li>Y_AXIS</li>
+<li>Z_AXIS</li>
+</ul>
+<h4 id="scalefloat-x-float-y-float-z">scale(float: x, float: y, float:
+z)</h4>
+<h3 id="matrix-stacks">Matrix Stacks</h3>
+<p>One excellent way of manipulating matrices is to use a matrix stack.
+In this implementation, each matrix has its own unique stack. It allows
+the contents of the matrix to be pushed onto the stack. You can then
+make as many changes or creations as you like without impacting the
+stack. When you are done, you can pop the matrix from the top of the
+stack. This restores the matrix to its pushed state.</p>
+<h4 id="push">push()</h4>
+<p>Pushes a copy of the current matrix to the stack for this matrix
+object.</p>
+<h4 id="pop">pop()</h4>
+<p>Pops the matrix from the top of the stack into the current matrix,
+restoring its pre-push state.</p>
+<p>If the stack is empty no error will be generated. In this case, no
+action is taken and the matrix remains unchanged.</p>
+<h4 id="stack-usage">Stack usage</h4>
+<pre><code>let m = new Matrix()
+m.multiplyBy(rage.createMatrix().createTranslation(20,30,40))
+
+1 0 0 20
+0 1 0 30
+0 0 1 40
+0 0 0 1
+
+m.push() // Push matrix to the stack
+    m.rotate(45, Y_AXIS)
+
+    0.52  0 0.85  20
+    0     1 0     30
+    -0.85 0 0.52  40
+    0     0 0     1
+    // Do something with rotated matrix
+m.pop() // Pop matrix back from the stack
+
+1 0 0 20
+0 1 0 30
+0 0 1 40
+0 0 0 1
+// Original restored
+</code></pre>
+<p>Stacks can contain more than one matrix.</p>
+<pre><code>let m = new Matrix()
+m.translate(30,40,50)
+m.rotate(20, Y_AXIS)
+
+m.push()
+    m.translate(0,0,50)
+    m.push()
+        m.rotate(10, X_AXIS)
+        // some action
+    m.pop()
+    m.push()
+        m.rotate(-10, X_AXIS)
+        // another action
+    m.pop()
+m.pop()</code></pre>
+<p>This is very useful and, as per this example, it is common to indent
+after each push() call so that you can track which stack layer you are
+working on.</p>
 </body>
 </html>

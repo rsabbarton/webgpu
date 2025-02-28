@@ -13,6 +13,7 @@ log(rage)
 
 setListeners()
 main()
+setTimeout(()=>{runAll()}, 3000)
 
 const myShaders = {
     label: 'my shaders',

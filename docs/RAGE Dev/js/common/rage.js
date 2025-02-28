@@ -1,13 +1,11 @@
 import {log} from './rage_modules/logger.js'
-import {WEBGPUTools as webgpuTools} from './rage_modules/webgpu-tools.js'
-import {WGSLTOOLS as wgslTools} from './rage_modules/wgsl-tools.js'
 import {redTriangleSample} from './rage_modules/shader-samples.js'
 
 import * as constants from './rage_modules/rage_constants.js'
 
 import {ResourceManager} from './rage_modules/resource-manager.js'
 import {Matrix} from './rage_modules/matrix.js'
-
+import {Vector2, Vector3, Vector4} from './rage_modules/vector.js'
 
 
 class RAGE {
@@ -21,19 +19,21 @@ class RAGE {
         this.viewMode = false
         this.shaderMode = false
         this.canvas = false
-        this.webgpuTools = webgpuTools
-        this.wgslTools = wgslTools
-
+        this.context = false
+        
         this.modules = new Array()
         this.pipelines = new Array()
         this.renderPassDescriptors = new Array()
     }
 
-    isSupported(){
+    async isSupported(){
         // CODE: INCOMPLETE
         // UNIT: FALSE
         // DOCS: FALSE
-        return this.webgpuTools.isSupported()
+        const adapter = await navigator.gpu?.requestAdapter()
+        const device = await adapter?.requestDevice()   
+        if(adapter && device) return true
+        return false
     }
 
     log(text){
@@ -56,8 +56,35 @@ class RAGE {
         log('Setting canvas with Id: ' + canvas.id)
         this.canvas = canvas
         log('Initialising Rage')
-        await this.webgpuTools.init(this.canvas)
+        
+        // CODE: INCOMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+        log(canvas)
+        this.canvas = canvas
+        
+        this.adapter = await navigator.gpu?.requestAdapter()
+        log(this.adaptor)
+        this.device = await this.adapter?.requestDevice()   
+        log(this.device)
+        if(!this.adapter || !this.device){
+            log('WebGPU Not Supported in this browser')
+            return false
+        }
+
+        this.context = canvas.getContext('webgpu')
+        log(this.context)
+        this.presentationFormat = await navigator.gpu.getPreferredCanvasFormat()
+        log(this.presentationFormat)
+        this.context.configure({
+            device: this.device,
+            format: this.presentationFormat,
+        })
+
+        
         this.resourceManager = new ResourceManager()
+        
+        log('Rage Init() Completed!')
         return this
     }
 
@@ -92,12 +119,30 @@ class RAGE {
     }
 
     createMatrix() {
-        // CODE: INCOMPLETE
-        // UNIT: FALSE
+        // CODE: COMPLETE
+        // UNIT: TRUE
         // DOCS: FALSE
         return new Matrix()
     }
 
+    createVector2d(x,y){
+        // CODE: COMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+        return new Vector2(x,y)
+    }
+    createVector3d(x,y,z){
+        // CODE: COMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+        return new Vector3(x,y,z)
+    }
+    createVector4d(x,y,z,a){
+        // CODE: COMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+        return new Vector4(x,y,z,a)
+    }
 
     getPipeline(id) { 
         // CODE: INCOMPLETE
@@ -122,7 +167,8 @@ class RAGE {
         // CODE: INCOMPLETE
         // UNIT: FALSE
         // DOCS: FALSE
-        let newModule = await this.webgpuTools.createShaderModule(shaderSrc)
+        log('Creating Shader Module')
+        let newModule = await this.device.createShaderModule(shaderSrc)
         let id = this.modules.length
         this.modules.push(newModule)
         return id
@@ -134,7 +180,7 @@ class RAGE {
         // UNIT: FALSE
         // DOCS: FALSE
         log('creating pipeline')
-        const pipeline = await webgpuTools.device.createRenderPipeline({
+        const pipeline = await this.device.createRenderPipeline({
             label: label,
             layout: 'auto',
             vertex: {
@@ -144,7 +190,7 @@ class RAGE {
             fragment: {
             entryPoint: fsEntry,
             module: this.modules[moduleId],
-            targets: [{ format: this.webgpuTools.presentationFormat }],
+            targets: [{ format: this.presentationFormat }],
             },
         })
         let id = this.pipelines.length
@@ -185,9 +231,9 @@ class RAGE {
         }
 
         this.renderPassDescriptors[renderPassDescriptorId].colorAttachments[0].view =
-            this.webgpuTools.context.getCurrentTexture().createView()
+            this.context.getCurrentTexture().createView()
         
-        this.currentEncoder = this.webgpuTools.device.createCommandEncoder({ label: 'our encoder' })
+        this.currentEncoder = this.device.createCommandEncoder({ label: 'our encoder' })
         this.currentRenderPass = this.currentEncoder.beginRenderPass(this.renderPassDescriptors[renderPassDescriptorId])
         return this.currentRenderPass
 
@@ -202,7 +248,7 @@ class RAGE {
         this.currentRenderPass.end()
     
         const commandBuffer = this.currentEncoder.finish()
-        this.webgpuTools.device.queue.submit([commandBuffer])
+        this.device.queue.submit([commandBuffer])
 
         this.currentRenderPass = false
     }
@@ -210,5 +256,5 @@ class RAGE {
 
 
 
-export {RAGE, log, Matrix, redTriangleSample}
+export {RAGE, log, Matrix, Vector2, Vector3, Vector4, redTriangleSample}
 

@@ -4,48 +4,61 @@
 const degToRad = d => d * Math.PI / 180
 const radToDeg = r => r * 180 / Math.PI
 
- 
+const X_AXIS = 101
+const Y_AXIS = 102
+const Z_AXIS = 103
 
 
 export class Matrix {
     constructor(){
         // CODE: COMPLETE
         // UNIT: TRUE
-        // DOCS: FALSE
+        // DOCS: TRUE
         this.matrix = new Float32Array(16)
-        this.setIdentity()
+        this.stack = new Array()
+        this.createIdentity()
     }
 
-    setIdentity(){
-        // CODE: INCOMPLETE
+    push(){
+        // CODE: COMPLETE
+        // UNIT: FALSE
+        // DOCS: TRUE
+        this.stack.push(this.matrix.slice())
+        return this
+    }
+    pop(){
+        // CODE: COMPLETE
+        // UNIT: FALSE
+        // DOCS: TRUE
+        if(this.stack.length > 0)
+            this.matrix = this.stack.pop()
+        return this
+    }
+    createIdentity(){
+        // CODE: COMPLETE
         // UNIT: TRUE
-        // DOCS: FALSE
+        // DOCS: TRUE
         this.matrix[ 0] = 1;  this.matrix[ 1] = 0;  this.matrix[ 2] = 0;  this.matrix[ 3] = 0
         this.matrix[ 4] = 0;  this.matrix[ 5] = 1;  this.matrix[ 6] = 0;  this.matrix[ 7] = 0
         this.matrix[ 8] = 0;  this.matrix[ 9] = 0;  this.matrix[10] = 1;  this.matrix[11] = 0
         this.matrix[12] = 0;  this.matrix[13] = 0;  this.matrix[14] = 0;  this.matrix[15] = 1
-        // TODO: Add return Value
-    }
-
-
-    copyFrom(src) {
-        // CODE: INCOMPLETE
-        // UNIT: FALSE
-        // DOCS: FALSE
-        this.matrix = src.matrix.slice() 
-        return dst // TODO: Validate Return (should be this and not this.matrix)
-    }
-
-    setProjection(width, height, depth, dst) {
-        // CODE: INCOMPLETE
-        // UNIT: FALSE
-        // DOCS: FALSE
-        // Note: This matrix flips the Y axis so that 0 is at the top.
-        this.ortho(0, width, height, 0, depth, -depth, dst)
+        // DONE: Add return Value
         return this
     }
 
-    perspective(fieldOfViewYInRadians, aspect, zNear, zFar) {
+
+    
+
+    createProjection(width, height, depth) {
+        // CODE: INCOMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+        // Note: UPDATE - Chaged to y+ is up. This matrix flips the Y axis so that 0 is at the top.
+        this.createOrthographic(0, width, 0,height, depth, -depth)
+        return this
+    }
+
+    createPerspective(fieldOfViewYInRadians, aspect, zNear, zFar) {
         // CODE: INCOMPLETE
         // UNIT: FALSE
         // DOCS: FALSE
@@ -74,10 +87,10 @@ export class Matrix {
         dst[14] = zNear * zFar * rangeInv;
         dst[15] = 0;
 
-        return dst;
+        return this
     }
 
-    orthographic(left, right, bottom, top, near, far) {
+    createOrthographic(left, right, bottom, top, near, far) {
         // CODE: INCOMPLETE
         // UNIT: FALSE
         // DOCS: FALSE
@@ -106,12 +119,26 @@ export class Matrix {
         return this
     }
 
-
-
-    multiplyBy(external) {
-        // CODE: INCOMPLETE
+    copyFromMatrix(src) {
+        // CODE: COMPLETE
         // UNIT: FALSE
         // DOCS: FALSE
+        this.matrix = src.matrix.slice() 
+        return this // DONE: Validate Return (should be this and not this.matrix)
+    }
+
+    loadFromFloat32Array(array){
+        // CODE: COMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+        if(array.length == 16)
+            this.matrix = array.slice()
+    }
+
+    multiplyBy(external) {
+        // CODE: COMPLETE
+        // UNIT: TRUE
+        // DOCS: TRUE
         let a = this.matrix
         let b = external.matrix
 
@@ -175,7 +202,7 @@ export class Matrix {
     }
 
     invert() {
-        // CODE: INCOMPLETE
+        // CODE: COMPLETE
         // UNIT: FALSE
         // DOCS: FALSE
         dst = new Float32Array(16);
@@ -313,9 +340,9 @@ export class Matrix {
     }
 
     createTranslation(tx, ty, tz) {
-        // CODE: INCOMPLETE
-        // UNIT: FALSE
-        // DOCS: FALSE
+        // CODE: COMPLETE
+        // UNIT: TRUE
+        // DOCS: TRUE
         let dst = this.matrix
         dst[ 0] = 1;   dst[ 1] = 0;   dst[ 2] = 0;   dst[ 3] = 0;
         dst[ 4] = 0;   dst[ 5] = 1;   dst[ 6] = 0;   dst[ 7] = 0;
@@ -324,9 +351,23 @@ export class Matrix {
         return this;
     }
 
-    translate(tx, ty, tz) {
+    createScaling(sx, sy, sz) {
         // CODE: INCOMPLETE
         // UNIT: FALSE
+        // DOCS: FALSE
+        dst = this.matrix
+        dst[ 0] = sx;  dst[ 1] = 0;   dst[ 2] = 0;    dst[ 3] = 0;
+        dst[ 4] = 0;   dst[ 5] = sy;  dst[ 6] = 0;    dst[ 7] = 0;
+        dst[ 8] = 0;   dst[ 9] = 0;   dst[10] = sz;   dst[11] = 0;
+        dst[12] = 0;   dst[13] = 0;   dst[14] = 0;    dst[15] = 1;
+        return this
+    }
+
+
+
+    translate(tx, ty, tz) {
+        // CODE: INCOMPLETE
+        // UNIT: TRUE
         // DOCS: FALSE
         let trx = new Matrix()
         trx.createTranslation(tx,ty,tz)
@@ -334,93 +375,104 @@ export class Matrix {
         return this
     }
 
-    rotationX(angleInRadians, dst) {
+    createRotation(angleInRadians, axis){
+        // CODE: INCOMPLETE
+        // UNIT: TRUE
+        // DOCS: FALSE
+        switch(axis){
+            case X_AXIS:
+                this.rotationX(angleInRadians)
+                break
+            case Y_AXIS:
+                this.rotationY(angleInRadians)
+                break
+            case Z_AXIS:
+                this.rotationZ(angleInRadians)
+                break
+        }
+        return this
+
+    }
+
+    rotate(angleInRadians, axis){
+        // CODE: INCOMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+        let r = new Matrix()
+        switch(axis){
+            case X_AXIS:
+                r.rotationX(angleInRadians)
+                break
+            case Y_AXIS:
+                r.rotationY(angleInRadians)
+                break
+            case Z_AXIS:
+                r.rotationZ(angleInRadians)
+                break
+        }
+        this.multiplyBy(r)
+        return this
+
+    }
+
+    rotationX(angleInRadians) {
         // CODE: INCOMPLETE
         // UNIT: FALSE
         // DOCS: FALSE
         const c = Math.cos(angleInRadians);
         const s = Math.sin(angleInRadians);
-        dst = dst || new Float32Array(16);
+        let dst = this.matrix
         dst[ 0] = 1;  dst[ 1] = 0;   dst[ 2] = 0;  dst[ 3] = 0;
         dst[ 4] = 0;  dst[ 5] = c;   dst[ 6] = s;  dst[ 7] = 0;
         dst[ 8] = 0;  dst[ 9] = -s;  dst[10] = c;  dst[11] = 0;
         dst[12] = 0;  dst[13] = 0;   dst[14] = 0;  dst[15] = 1;
-        return dst;
+        return this;
     }
 
-    rotationY(angleInRadians, dst) {
+    rotationY(angleInRadians) {
         // CODE: INCOMPLETE
         // UNIT: FALSE
         // DOCS: FALSE
         const c = Math.cos(angleInRadians);
         const s = Math.sin(angleInRadians);
-        dst = dst || new Float32Array(16);
+        let dst = this.matrix
         dst[ 0] = c;  dst[ 1] = 0;  dst[ 2] = -s;  dst[ 3] = 0;
         dst[ 4] = 0;  dst[ 5] = 1;  dst[ 6] = 0;   dst[ 7] = 0;
         dst[ 8] = s;  dst[ 9] = 0;  dst[10] = c;   dst[11] = 0;
         dst[12] = 0;  dst[13] = 0;  dst[14] = 0;   dst[15] = 1;
-        return dst;
+        return this;
     }
 
-    rotationZ(angleInRadians, dst) {
+    rotationZ(angleInRadians) {
         // CODE: INCOMPLETE
         // UNIT: FALSE
         // DOCS: FALSE
         const c = Math.cos(angleInRadians);
         const s = Math.sin(angleInRadians);
-        dst = dst || new Float32Array(16);
+        let dst = this.matrix
         dst[ 0] = c;   dst[ 1] = s;  dst[ 2] = 0;  dst[ 3] = 0;
         dst[ 4] = -s;  dst[ 5] = c;  dst[ 6] = 0;  dst[ 7] = 0;
         dst[ 8] = 0;   dst[ 9] = 0;  dst[10] = 1;  dst[11] = 0;
         dst[12] = 0;   dst[13] = 0;  dst[14] = 0;  dst[15] = 1;
-        return dst;
+        return this;
     }
 
-    scaling([sx, sy, sz], dst) {
+    
+
+    scale(sx, sy, sz) {
         // CODE: INCOMPLETE
         // UNIT: FALSE
         // DOCS: FALSE
-        dst = dst || new Float32Array(16);
-        dst[ 0] = sx;  dst[ 1] = 0;   dst[ 2] = 0;    dst[ 3] = 0;
-        dst[ 4] = 0;   dst[ 5] = sy;  dst[ 6] = 0;    dst[ 7] = 0;
-        dst[ 8] = 0;   dst[ 9] = 0;   dst[10] = sz;   dst[11] = 0;
-        dst[12] = 0;   dst[13] = 0;   dst[14] = 0;    dst[15] = 1;
-        return dst;
-    }
-
-    // translate(m, translation, dst) {
-    //     return mat4.multiply(m, mat4.translation(translation), dst);
-    // }
-
-    rotateX(m, angleInRadians, dst) {
-        // CODE: INCOMPLETE
-        // UNIT: FALSE
-        // DOCS: FALSE
-        return mat4.multiply(m, mat4.rotationX(angleInRadians), dst);
-    }
-
-    rotateY(m, angleInRadians, dst) {
-        // CODE: INCOMPLETE
-        // UNIT: FALSE
-        // DOCS: FALSE
-        return mat4.multiply(m, mat4.rotationY(angleInRadians), dst);
-    }
-
-    rotateZ(m, angleInRadians, dst) {
-        // CODE: INCOMPLETE
-        // UNIT: FALSE
-        // DOCS: FALSE
-        return mat4.multiply(m, mat4.rotationZ(angleInRadians), dst);
-    }
-
-    scale(m, scale, dst) {
-        // CODE: INCOMPLETE
-        // UNIT: FALSE
-        // DOCS: FALSE
-        return mat4.multiply(m, mat4.scaling(scale), dst);
+        let s = new Matrix()
+        s.createScaling( sx, sy, sz)
+        this.multiplyBy(s)
+        return this
     }
     
     prettyPrint(){
+        // CODE: COMPLETE
+        // UNIT: TRUE
+        // DOCS: FALSE
         let m = this.matrix
         let textRepresentation = `       
 ${m[0]} ${m[4]} ${m[8]} ${m[12]}

@@ -165,31 +165,24 @@
 </header>
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#rage-documentation">Rage Documentation</a>
+<li><a href="#vector-module-reference">Vector Module Reference</a>
 <ul>
-<li><a href="#richards-awesome-graphics-engine-a.k.a.-rage">Richard’s
-Awesome Graphics Engine <br> (a.k.a. RAGE)</a></li>
-<li><a href="#what-is-the-engine">What is The Engine</a></li>
-<li><a href="#resources">Resources</a></li>
+<li><a href="#creating-a-vector">Creating a Vector</a></li>
+<li><a href="#vector-functions">Vector Functions</a>
+<ul>
+<li><a href="#vector2">Vector2</a></li>
+<li><a href="#vector3">Vector3</a></li>
+</ul></li>
 </ul></li>
 </ul>
 </nav>
-<h1 id="rage-documentation">Rage Documentation</h1>
-<h3 id="richards-awesome-graphics-engine-a.k.a.-rage">Richard’s Awesome
-Graphics Engine <br> (a.k.a. RAGE)</h3>
-<p>The RAGE Engine will be referred to as “rage” or “the engine” or just
-“engine” in the code. These terms should be considered synonymous.</p>
-<h2 id="what-is-the-engine">What is The Engine</h2>
-<p>The Engine is a WebGPU only (check browser support) graphics engine.
-It is not for general consumption and is more of a learning exercise in
-how WebGPU works. How it differs from WebGL and how new features in the
-graphics adapters can be harnessed within the web browser.</p>
-<h2 id="resources">Resources</h2>
-<ul>
-<li><a href="API-Reference.html">API Reference</a></li>
-<li><a href="Vector-Module.html">Vector Module</a></li>
-<li><a href="Matrix-Module.html">Matrix module</a></li>
-<li><a href="../index.html">Samples</a></li>
-</ul>
+<h1 id="vector-module-reference">Vector Module Reference</h1>
+<h2 id="creating-a-vector">Creating a Vector</h2>
+<pre><code>import {Vector2, Vector3} from &quot;vector.js&quot;
+let v2 = new Vector2(0 , 0)
+let v3 = new Vector3(0, 0, 0)</code></pre>
+<h2 id="vector-functions">Vector Functions</h2>
+<h3 id="vector2">Vector2</h3>
+<h3 id="vector3">Vector3</h3>
 </body>
 </html>

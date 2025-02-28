@@ -1,4 +1,11 @@
 export const VALUES = []
+
+export const X_AXIS = 101; VALUES.push(101)
+export const Y_AXIS = 102; VALUES.push(102)
+export const Z_AXIS = 103; VALUES.push(103)
+
+
+
 export const VERTEX_TYPE_2D             = 1001; VALUES.push(1001)
 export const VERTEX_TYPE_3D             = 1002; VALUES.push(1002)
 export const VERTEX_TYPE_2DUV           = 1003; VALUES.push(1003)

@@ -12,5 +12,6 @@ The Engine is a WebGPU only (check browser support) graphics engine.  It is not 
 ## Resources
 
  - [API Reference](API-Reference.html)
+ - [Vector Module](Vector-Module.html)
  - [Matrix module](Matrix-Module.html)
  - [Samples](../index.html)
