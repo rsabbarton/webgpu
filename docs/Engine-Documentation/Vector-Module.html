@@ -170,19 +170,40 @@
 <li><a href="#creating-a-vector">Creating a Vector</a></li>
 <li><a href="#vector-functions">Vector Functions</a>
 <ul>
-<li><a href="#vector2">Vector2</a></li>
-<li><a href="#vector3">Vector3</a></li>
+<li><a href="#vector-modifiers">Vector Modifiers</a></li>
+<li><a href="#vector-calculations">Vector Calculations</a></li>
 </ul></li>
 </ul></li>
 </ul>
 </nav>
 <h1 id="vector-module-reference">Vector Module Reference</h1>
 <h2 id="creating-a-vector">Creating a Vector</h2>
-<pre><code>import {Vector2, Vector3} from &quot;vector.js&quot;
-let v2 = new Vector2(0 , 0)
-let v3 = new Vector3(0, 0, 0)</code></pre>
+<pre><code>import {Vector2, Vector3, Vector4} from &quot;vector.js&quot;
+let v2 = new Vector2(0, 0)
+let v3 = new Vector3(0, 0, 0)
+let v3 = new Vector4(0, 0, 0, 0)</code></pre>
 <h2 id="vector-functions">Vector Functions</h2>
-<h3 id="vector2">Vector2</h3>
-<h3 id="vector3">Vector3</h3>
+<h3 id="vector-modifiers">Vector Modifiers</h3>
+<p>These functions are (unless specified) available for 2D, 3D and 4D
+Vectors. If a Vector is supplied as a function attribute then it must be
+of the same class 2,3 or 4D as the parent of the called function.</p>
+<h4 id="addvector-v---vector-this">add(Vector: v) -&gt; Vector:
+this</h4>
+<p>Adds the supplied vector to the current vector and returns the vector
+object.</p>
+<h4 id="subvector-v---vector-this">sub(Vector: v) -&gt; Vector:
+this</h4>
+<p>Subracts v from your vector and returns it.</p>
+<h4 id="mulfloat-f---vector-this">mul(float: f) -&gt; Vector: this</h4>
+<p>Multplies your vector by f and returns it.</p>
+<h4 id="divfloat-f---vector-this">div(float: f) -&gt; Vector: this</h4>
+<p>Divides your vector by f and returns it.</p>
+<h4 id="normalize---vector-this">normalize() -&gt; Vector: this</h4>
+<p>Divides this vector by its length, converting it to a unit
+(normalised) vector with a length of 1.0.</p>
+<h4 id="dotvector-v---float">dot(Vector: v) -&gt; float</h4>
+<p>Returns the dot product of this vector and the supplied vector as a
+single float value. Neither vector is modified.</p>
+<h3 id="vector-calculations">Vector Calculations</h3>
 </body>
 </html>

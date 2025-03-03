@@ -39,17 +39,8 @@ const vec3 = {
       }
   
       return dst;
-    },
-    getTranslation(m, dst) {
-      dst = dst || new Float32Array(3);
-  
-      dst[0] = m[12];
-      dst[1] = m[13];
-      dst[2] = m[14];
-  
-      return dst;
-    },
-  };
+    }
+  }
   
   const mat4 = {
     copy(src, dst) {
