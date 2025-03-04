@@ -1,4 +1,4 @@
-
+import {assertEqual, assertTypedArray} from "./assert.js"
 
  
 const degToRad = d => d * Math.PI / 180
@@ -38,6 +38,7 @@ export class Matrix {
         // CODE: COMPLETE
         // UNIT: TRUE
         // DOCS: TRUE
+        assertTypedArray(this.matrix, 'Verify Matrix is Float32Array()')
         this.matrix[ 0] = 1;  this.matrix[ 1] = 0;  this.matrix[ 2] = 0;  this.matrix[ 3] = 0
         this.matrix[ 4] = 0;  this.matrix[ 5] = 1;  this.matrix[ 6] = 0;  this.matrix[ 7] = 0
         this.matrix[ 8] = 0;  this.matrix[ 9] = 0;  this.matrix[10] = 1;  this.matrix[11] = 0

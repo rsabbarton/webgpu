@@ -6,6 +6,7 @@ import * as constants from './rage_modules/rage_constants.js'
 import {ResourceManager} from './rage_modules/resource-manager.js'
 import {Matrix} from './rage_modules/matrix.js'
 import {Vector2, Vector3, Vector4} from './rage_modules/vector.js'
+import {Material, Texture} from './rage_modules/material.js'
 
 
 class RAGE {
@@ -142,6 +143,13 @@ class RAGE {
         // UNIT: FALSE
         // DOCS: FALSE
         return new Vector4(x,y,z,a)
+    }
+
+    createMaterial() {
+        // CODE: COMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+        return new Material()
     }
 
     getPipeline(id) { 
