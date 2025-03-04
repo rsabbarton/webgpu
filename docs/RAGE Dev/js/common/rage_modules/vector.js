@@ -1,17 +1,24 @@
+import {assertEqual} from "./assert.js"
 
+const VECTOR2 = 2
+const VECTOR3 = 3
+const VECTOR4 = 4
 
 
 export class Vector2 {
     constructor(x, y){
         this.x = x
         this.y = y
+        this.type = VECTOR2
     }
 
     add(v){
+        assertEqual(v.type, this.type, "Vector add: v is not a Vector" + this.type)
         return new Vector2(this.x + v.x, this.y + v.y)
     }
 
     sub(v){
+        assertEqual(v.type, this.type, "Vector add: v is not a Vector" + this.type)
         return new Vector2(this.x - v.x, this.y - v.y)
     }
 
@@ -24,6 +31,7 @@ export class Vector2 {
     }
 
     dot(v){
+        assertEqual(v.type, this.type, "Vector add: v is not a Vector" + this.type)
         return this.x * v.x + this.y * v.y
     }
 
@@ -36,10 +44,12 @@ export class Vector2 {
     }
 
     distance(v){
+        assertEqual(v.type, this.type, "Vector add: v is not a Vector" + this.type)
         return this.sub(v).length()
     }
 
     angle(v){
+        assertEqual(v.type, this.type, "Vector add: v is not a Vector" + this.type)
         return Math.acos(this.dot(v) / (this.length() * v.length()))
     }
 
@@ -67,13 +77,17 @@ export class Vector3 {
         this.x = x
         this.y = y
         this.z = z
+
+        this.type = VECTOR3
     }
 
     add(v){
+        assertEqual(v.type, this.type, "Vector add: v is not a Vector" + this.type)
         return new Vector3(this.x + v.x, this.y + v.y, this.z + v.z)
     }
 
     sub(v){
+        assertEqual(v.type, this.type, "Vector add: v is not a Vector" + this.type)
         return new Vector3(this.x - v.x, this.y - v.y, this.z - v.z)
     }
 
@@ -86,10 +100,12 @@ export class Vector3 {
     }
 
     dot(v){
+        assertEqual(v.type, this.type, "Vector add: v is not a Vector" + this.type)
         return this.x * v.x + this.y * v.y + this.z * v.z
     }
 
     cross(v){
+        assertEqual(v.type, this.type, "Vector add: v is not a Vector" + this.type)
         return new Vector3(this.y * v.z - this.z * v.y, this.z * v.x - this.x * v.z, this.x * v.y - this.y * v.x)
     }
 
@@ -102,10 +118,12 @@ export class Vector3 {
     }
 
     distance(v){
+        assertEqual(v.type, this.type, "Vector add: v is not a Vector" + this.type)
         return this.sub(v).length()
     }
 
     angle(v){
+        assertEqual(v.type, this.type, "Vector add: v is not a Vector" + this.type)
         return Math.acos(this.dot(v) / (this.length() * v.length()))
     }
 
@@ -136,14 +154,17 @@ export class Vector4 {
         this.z = z
         this.w = w
 
+        this.type = VECTOR4
         
     }
 
     add(v){
+        assertEqual(v.type, this.type, "Vector add: v is not a Vector" + this.type)
         return new Vector4(this.x + v.x, this.y + v.y, this.z + v.z, this.w + v.w)
     }
 
     sub(v){
+        assertEqual(v.type, this.type, "Vector add: v is not a Vector" + this.type)
         return new Vector4(this.x - v.x, this.y - v.y, this.z - v.z, this.w - v.w)
     }
 
@@ -156,6 +177,7 @@ export class Vector4 {
     }
 
     dot(v){
+        assertEqual(v.type, this.type, "Vector add: v is not a Vector" + this.type)
         return this.x * v.x + this.y * v.y + this.z * v.z + this.w * v.w
     }
 
@@ -168,10 +190,12 @@ export class Vector4 {
     }
 
     distance(v){
+        assertEqual(v.type, this.type, "Vector add: v is not a Vector" + this.type)
         return this.sub(v).length()
     }
 
     angle(v){
+        assertEqual(v.type, this.type, "Vector add: v is not a Vector" + this.type)
         return Math.acos(this.dot(v) / (this.length() * v.length()))
     }
 

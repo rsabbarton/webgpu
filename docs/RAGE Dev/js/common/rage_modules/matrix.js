@@ -122,7 +122,7 @@ export class Matrix {
         // CODE: COMPLETE
         // UNIT: FALSE
         // DOCS: FALSE
-        if(array.length == 16)
+        if(array.byteLength == 16)
             this.matrix = array.slice()
     }
 
