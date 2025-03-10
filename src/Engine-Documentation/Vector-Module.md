@@ -35,10 +35,9 @@ Divides your vector by f and returns it.
 
 Divides this vector by its length, converting it to a unit (normalised) vector with a length of 1.0.
 
+
+### Vector Calculations
+
 #### dot(Vector: v) -> float
 
 Returns the dot product of this vector and the supplied vector as a single float value.  Neither vector is modified.
-
-
-
-### Vector Calculations

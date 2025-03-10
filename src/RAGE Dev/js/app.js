@@ -41,8 +41,8 @@ async function main(){
     let canvas = setCanvasDimensions()
     await rage.init(canvas)
 
-    const crateId = rage.createImageTexture('crate', '../Resources/Images/crate.jpg')
-    log(crateId)
+    //const crateId = rage.createImageTexture('crate', '../Resources/Images/crate.jpg')
+    //log(crateId)
 
     rage.setVertexType(rage.def.VERTEX_TYPE_3DUVC)
     rage.setViewMode(rage.def.VIEW_MODE_3D_PERSPECTIVE)

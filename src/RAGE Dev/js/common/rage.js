@@ -25,6 +25,15 @@ class RAGE {
         this.modules = new Array()
         this.pipelines = new Array()
         this.renderPassDescriptors = new Array()
+        this.currentRenderPass = false
+        this.currentEncoder = false
+        this.adapter = false
+        this.device = false
+        this.presentationFormat = false
+        
+        this.materials = new Array()
+
+        this.resourceManager = false
     }
 
     async isSupported(){
@@ -89,11 +98,16 @@ class RAGE {
         return this
     }
 
-    createImageTexture(name, url){
+    createMaterial(name){
         // CODE: INCOMPLETE
         // UNIT: FALSE
         // DOCS: FALSE
-        return this.resourceManager.createImageTexture(name, url)
+        let material = new Material()
+        material.name = name
+        let id = this.materials.length
+        material.id = id
+        this.materials.push(material)   
+        return id
     }
 
     setVertexType(type){
@@ -145,12 +159,7 @@ class RAGE {
         return new Vector4(x,y,z,a)
     }
 
-    createMaterial() {
-        // CODE: COMPLETE
-        // UNIT: FALSE
-        // DOCS: FALSE
-        return new Material()
-    }
+    
 
     getPipeline(id) { 
         // CODE: INCOMPLETE
