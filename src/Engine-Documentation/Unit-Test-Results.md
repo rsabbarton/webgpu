@@ -42,6 +42,32 @@
    
 #### ✔ Should create an orthographic matrix
 
+##  Mesh
+   
+#### ✔ Should initialize with an empty triplets array and a default material
+
+##  Triplet
+   
+#### ✔ Should initialize with three vertices and a default normal vector
+   
+#### ✔ Should calculate the correct surface normal
+
+##  Model
+   
+#### ✔ Should initialize with an empty meshes array
+   
+#### ✔ Should add a mesh to the meshes array
+   
+#### ✔ Should return a mesh by index
+   
+#### ✔ Should return all meshes
+   
+#### ✔ Should return the correct mesh count
+   
+#### ✔ Should remove a mesh by index
+   
+#### ✔ Should compile render buffers
+
 ##  Vector2
    
 #### ✔ Should create a Vector2 with given x and y
@@ -149,5 +175,5 @@
 #### ✔ Should initialize normal to (0, 0, 1)
 
 
-  65 passing (102ms)
+  75 passing (106ms)
 
