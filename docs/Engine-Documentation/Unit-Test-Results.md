@@ -1,87 +1,153 @@
 
 
-  Custom Assertion Module
-    ✔ should assert equal values
-    ✔ should assert not equal values
-    ✔ should assert typed array
-    ✔ should disable debug assertions
+##  Custom Assertion Module
+   
+#### ✔ Should assert equal values
+   
+#### ✔ Should assert not equal values
+   
+#### ✔ Should assert typed array
+   
+#### ✔ Should disable debug assertions
 
-  Logger
-    ✔ should log a message to the console and prepend it to the output div
+##  Logger
+   
+#### ✔ Should log a message to the console and prepend it to the output div
 
-  Material
-    ✔ should set base color
-    ✔ should set ambient color
-    ✔ should set diffuse color
-    ✔ should set specular color
-    ✔ should set emission color
-    ✔ should set base color from hex
-    ✔ should create texture
-    ✔ should handle texture loaded
+##  Material
+   
+#### ✔ Should set base color
+   
+#### ✔ Should set ambient color
+   
+#### ✔ Should set diffuse color
+   
+#### ✔ Should set specular color
+   
+#### ✔ Should set emission color
+   
+#### ✔ Should set base color from hex
+   
+#### ✔ Should create texture
+   
+#### ✔ Should handle texture loaded
 
-  Matrix
-    ✔ should create an identity matrix
-    ✔ should push and pop matrix
-    ✔ should create a perspective matrix
-    ✔ should create an orthographic matrix
+##  Matrix
+   
+#### ✔ Should create an identity matrix
+   
+#### ✔ Should push and pop matrix
+   
+#### ✔ Should create a perspective matrix
+   
+#### ✔ Should create an orthographic matrix
 
-  Vector2
-    ✔ should create a Vector2 with given x and y
-    ✔ should add two Vector2 instances
-    ✔ should subtract two Vector2 instances
-    ✔ should multiply a Vector2 by a scalar
-    ✔ should divide a Vector2 by a scalar
-    ✔ should calculate the dot product of two Vector2 instances
-    ✔ should normalize a Vector2
-    ✔ should calculate the length of a Vector2
-    ✔ should calculate the distance between two Vector2 instances
-    ✔ should calculate the angle between two Vector2 instances
-    ✔ should clone a Vector2
-    ✔ should convert a Vector2 to a string
-    ✔ should create a Vector2 from an array
-    ✔ should convert a Vector2 to an array
+##  Vector2
+   
+#### ✔ Should create a Vector2 with given x and y
+   
+#### ✔ Should add two Vector2 instances
+   
+#### ✔ Should subtract two Vector2 instances
+   
+#### ✔ Should multiply a Vector2 by a scalar
+   
+#### ✔ Should divide a Vector2 by a scalar
+   
+#### ✔ Should calculate the dot product of two Vector2 instances
+   
+#### ✔ Should normalize a Vector2
+   
+#### ✔ Should calculate the length of a Vector2
+   
+#### ✔ Should calculate the distance between two Vector2 instances
+   
+#### ✔ Should calculate the angle between two Vector2 instances
+   
+#### ✔ Should clone a Vector2
+   
+#### ✔ Should convert a Vector2 to a string
+   
+#### ✔ Should create a Vector2 from an array
+   
+#### ✔ Should convert a Vector2 to an array
 
-  Vector3
-    ✔ should create a Vector3 with given x, y, and z
-    ✔ should add two Vector3 instances
-    ✔ should subtract two Vector3 instances
-    ✔ should multiply a Vector3 by a scalar
-    ✔ should divide a Vector3 by a scalar
-    ✔ should calculate the dot product of two Vector3 instances
-    ✔ should calculate the cross product of two Vector3 instances
-    ✔ should normalize a Vector3
-    ✔ should calculate the length of a Vector3
-    ✔ should calculate the distance between two Vector3 instances
-    ✔ should calculate the angle between two Vector3 instances
-    ✔ should clone a Vector3
-    ✔ should convert a Vector3 to a string
-    ✔ should create a Vector3 from an array
-    ✔ should convert a Vector3 to an array
-    ✔ should calculate the surface normal of three Vector3 instances
+##  Vector3
+   
+#### ✔ Should create a Vector3 with given x, y, and z
+   
+#### ✔ Should add two Vector3 instances
+   
+#### ✔ Should subtract two Vector3 instances
+   
+#### ✔ Should multiply a Vector3 by a scalar
+   
+#### ✔ Should divide a Vector3 by a scalar
+   
+#### ✔ Should calculate the dot product of two Vector3 instances
+   
+#### ✔ Should calculate the cross product of two Vector3 instances
+   
+#### ✔ Should normalize a Vector3
+   
+#### ✔ Should calculate the length of a Vector3
+   
+#### ✔ Should calculate the distance between two Vector3 instances
+   
+#### ✔ Should calculate the angle between two Vector3 instances
+   
+#### ✔ Should clone a Vector3
+   
+#### ✔ Should convert a Vector3 to a string
+   
+#### ✔ Should create a Vector3 from an array
+   
+#### ✔ Should convert a Vector3 to an array
+   
+#### ✔ Should calculate the surface normal of three Vector3 instances
 
-  Vector4
-    ✔ should create a Vector4 with given x, y, z, and w
-    ✔ should add two Vector4 instances
-    ✔ should subtract two Vector4 instances
-    ✔ should multiply a Vector4 by a scalar
-    ✔ should divide a Vector4 by a scalar
-    ✔ should calculate the dot product of two Vector4 instances
-    ✔ should normalize a Vector4
-    ✔ should calculate the length of a Vector4
-    ✔ should calculate the distance between two Vector4 instances
-    ✔ should calculate the angle between two Vector4 instances
-    ✔ should clone a Vector4
-    ✔ should convert a Vector4 to a string
-    ✔ should create a Vector4 from an array
-    ✔ should convert a Vector4 to an array
+##  Vector4
+   
+#### ✔ Should create a Vector4 with given x, y, z, and w
+   
+#### ✔ Should add two Vector4 instances
+   
+#### ✔ Should subtract two Vector4 instances
+   
+#### ✔ Should multiply a Vector4 by a scalar
+   
+#### ✔ Should divide a Vector4 by a scalar
+   
+#### ✔ Should calculate the dot product of two Vector4 instances
+   
+#### ✔ Should normalize a Vector4
+   
+#### ✔ Should calculate the length of a Vector4
+   
+#### ✔ Should calculate the distance between two Vector4 instances
+   
+#### ✔ Should calculate the angle between two Vector4 instances
+   
+#### ✔ Should clone a Vector4
+   
+#### ✔ Should convert a Vector4 to a string
+   
+#### ✔ Should create a Vector4 from an array
+   
+#### ✔ Should convert a Vector4 to an array
 
-  Vertex2D
-    ✔ should create a Vertex2D with given x and y
+##  Vertex2D
+   
+#### ✔ Should create a Vertex2D with given x and y
 
-  Vertex3D
-    ✔ should create a Vertex3D with given x, y, and z
-    ✔ should initialize uv to (0, 0)
+##  Vertex3D
+   
+#### ✔ Should create a Vertex3D with given x, y, and z
+   
+#### ✔ Should initialize uv to (0, 0)
+   
+#### ✔ Should initialize normal to (0, 0, 1)
 
 
-  64 passing (103ms)
+  65 passing (102ms)
 
