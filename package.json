@@ -25,12 +25,19 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "./scripts/test-server.sh",
+    "tests": "./scripts/unit-tests.sh",
     "deploy": "./scripts/deploy.sh",
-    "update": "./scripts/update-content.sh"
+    "update": "./scripts/update-content.sh",
+    "start": "./scripts/test-server.sh"
   },
   "dependencies": {
     "nodemon": "^3.1.9",
     "watcher": "^2.3.1"
+  },
+  "devDependencies": {
+    "chai": "^5.2.0",
+    "jsdom": "^26.0.0",
+    "mocha": "^11.1.0",
+    "sinon": "^19.0.2"
   }
 }

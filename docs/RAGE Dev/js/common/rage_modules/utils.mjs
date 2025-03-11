@@ -12,3 +12,9 @@ export function hexToRgb(hex) {
 export function rgbToHex(r, g, b, a) {
     return '#' + ((1 << 24) + (r << 16) + (g << 8) + b + (a << 0)).toString(16).slice(1);
 }
+
+
+export const degToRad = d => d * Math.PI / 180;
+export const radToDeg = r => r * 180 / Math.PI;
+
+  

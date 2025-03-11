@@ -1,4 +1,4 @@
-import {assertEqual} from "./assert.js"
+import {assertEqual} from "./assert.mjs"
 
 const VECTOR2 = 2
 const VECTOR3 = 3
@@ -135,12 +135,26 @@ export class Vector3 {
         return `(${this.x}, ${this.y}, ${this.z})`
     }
 
-    static fromArray(arr){
-        return new Vector3(arr[0], arr[1], arr[2])
-    }
-
     toArray(){
         return [this.x, this.y, this.z]
+    }
+
+    // STATIC METHODS
+    //
+    //
+
+    static surfaceNormal(v1, v2, v3){
+        assertEqual(v1.type, this.type, "Vector add: v1 is not a Vector" + this.type)
+        assertEqual(v2.type, this.type, "Vector add: v2 is not a Vector" + this.type)
+        assertEqual(v3.type, this.type, "Vector add: v3 is not a Vector" + this.type)
+        const u = v2.sub(v1)
+        const v = v3.sub(v1)
+        return u.cross(v).normalize()
+    }
+
+    
+    static fromArray(arr){
+        return new Vector3(arr[0], arr[1], arr[2])
     }
 
     

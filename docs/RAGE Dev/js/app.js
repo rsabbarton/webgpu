@@ -7,7 +7,6 @@ import {cube} from './sample-model-cube.js'
 let rage = new RAGE()
 globalThis.rage = rage // for debugging
 globalThis.log = log // for debugging
-globalThis.matrix = new Matrix() // for debugging
 
 log(rage)
 

@@ -1,12 +1,12 @@
-import {log} from './rage_modules/logger.js'
-import {redTriangleSample} from './rage_modules/shader-samples.js'
+import {log} from './rage_modules/logger.mjs'
+import {redTriangleSample} from './rage_modules/shader-samples.mjs'
 
-import * as constants from './rage_modules/rage_constants.js'
+import * as constants from './rage_modules/rage_constants.mjs'
 
-import {ResourceManager} from './rage_modules/resource-manager.js'
-import {Matrix} from './rage_modules/matrix.js'
-import {Vector2, Vector3, Vector4} from './rage_modules/vector.js'
-import {Material, Texture} from './rage_modules/material.js'
+import {ResourceManager} from './rage_modules/resource-manager.mjs'
+import {Matrix} from './rage_modules/matrix.mjs'
+import {Vector2, Vector3, Vector4} from './rage_modules/vector.mjs'
+import {Material, Texture} from './rage_modules/material.mjs'
 
 
 class RAGE {

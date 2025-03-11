@@ -1,5 +1,5 @@
 
-import { hexToRgb } from './utils.js'
+import { hexToRgb } from './utils.mjs'
 
 
 
@@ -30,7 +30,7 @@ export class Material {
         this.baseColor[0] = red
         this.baseColor[1] = green
         this.baseColor[2] = blue
-        this.baseColor[3] = alpha || 1
+        this.baseColor[3] = alpha || 255
         return this
     }
 
@@ -38,7 +38,7 @@ export class Material {
         this.ambientColor[0] = red
         this.ambientColor[1] = green
         this.ambientColor[2] = blue
-        this.ambientColor[3] = alpha || 1
+        this.ambientColor[3] = alpha || 255
         return this
     }
 
@@ -46,7 +46,7 @@ export class Material {
         this.diffuseColor[0] = red
         this.diffuseColor[1] = green
         this.diffuseColor[2] = blue
-        this.diffuseColor[3] = alpha || 1
+        this.diffuseColor[3] = alpha || 255
         return this
     }
 
@@ -54,7 +54,7 @@ export class Material {
         this.specularColor[0] = red
         this.specularColor[1] = green
         this.specularColor[2] = blue
-        this.specularColor[3] = alpha || 1
+        this.specularColor[3] = alpha || 255
         return this
     }
 
@@ -62,7 +62,7 @@ export class Material {
         this.emissionColor[0] = red
         this.emissionColor[1] = green
         this.emissionColor[2] = blue
-        this.emissionColor[3] = alpha || 1
+        this.emissionColor[3] = alpha || 255
         return this
     }
 
@@ -76,31 +76,31 @@ export class Material {
 
     setBaseColorFromHex(hex){
         let color = hexToRgb(hex)
-        this.setBaseColor(color.r, color.g, color.b, color.a)
+        this.setBaseColor(color.r, color.g, color.b, color.a || 255)
         return this
     }
 
     setAmbientColorFromHex(hex){
         let color = hexToRgb(hex)
-        this.setAmbientColor(color.r, color.g, color.b, color.a)
+        this.setAmbientColor(color.r, color.g, color.b, color.a || 255)
         return this
     }
 
     setDiffuseColorFromHex(hex){
         let color = hexToRgb(hex)
-        this.setDiffuseColor(color.r, color.g, color.b, color.a)
+        this.setDiffuseColor(color.r, color.g, color.b, color.a || 255)
         return this
     }
 
     setSpecularColorFromHex(hex){
         let color = hexToRgb(hex)
-        this.setSpecularColor(color.r, color.g, color.b, color.a)
+        this.setSpecularColor(color.r, color.g, color.b, color.a || 255)
         return this
     }
 
     setEmissionColorFromHex(hex){
         let color = hexToRgb(hex)
-        this.setEmissionColor(color.r, color.g, color.b, color.a)
+        this.setEmissionColor(color.r, color.g, color.b, color.a || 255)
         return this
     }
 
@@ -134,7 +134,7 @@ export class Texture {
         this.parent = parent
         this.src = src
         this.img = new Image()
-        this.img = this.src
+        this.img.src = this.src
         this.img.onload = (event)=>{
             this.processImage(event)
         }

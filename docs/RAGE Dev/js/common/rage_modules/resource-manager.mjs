@@ -1,4 +1,4 @@
-import {log as log} from './logger.js'
+import {log as log} from './logger.mjs'
 
 class ResourceManager {
     constructor(){

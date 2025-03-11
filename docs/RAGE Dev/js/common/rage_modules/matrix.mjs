@@ -1,4 +1,4 @@
-import {assertEqual, assertTypedArray} from "./assert.js"
+import {assertEqual, assertTypedArray} from "./assert.mjs"
 
  
 const degToRad = d => d * Math.PI / 180

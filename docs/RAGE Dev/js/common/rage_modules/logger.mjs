@@ -23,4 +23,7 @@ class Logger {
 
 const LOGGER = new Logger()
 const log =  LOGGER.log
-export {log}
+export {log as log}
+export {Logger as Logger}
+export default log
+
