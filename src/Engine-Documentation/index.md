@@ -18,4 +18,5 @@ The Engine is a WebGPU only (check browser support) graphics engine.  It is not 
 
 ## Unit Test Results
 
+ - [Code Coverage Report](coverage/index.html)
  - [Unit Test Results](Unit-Test-Results.html)
