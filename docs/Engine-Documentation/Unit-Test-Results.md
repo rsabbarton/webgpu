@@ -175,5 +175,5 @@
 #### ✔ Should initialize normal to (0, 0, 1)
 
 
-  75 passing (107ms)
+  75 passing (106ms)
 

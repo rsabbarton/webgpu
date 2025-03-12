@@ -27,7 +27,8 @@
     "tests": "./scripts/unit-tests.sh",
     "deploy": "./scripts/deploy.sh",
     "update": "./scripts/update-content.sh",
-    "start": "./scripts/test-server.sh"
+    "start": "./scripts/test-server.sh",
+    "coverage": "c8 -o ./src/Engine-Documentation/coverage npx mocha"
   },
   "dependencies": {
     "nodemon": "^3.1.9",
