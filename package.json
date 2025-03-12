@@ -19,7 +19,6 @@
   },
   "license": "ISC",
   "author": "Richard Sabbarton",
-  "type": "commonjs",
   "main": "./scripts/test-server.sh",
   "directories": {
     "doc": "docs"
@@ -35,9 +34,12 @@
     "watcher": "^2.3.1"
   },
   "devDependencies": {
+    "@istanbuljs/nyc-config-typescript": "^1.0.2",
     "chai": "^5.2.0",
+    "istanbul-js": "^0.0.6",
     "jsdom": "^26.0.0",
     "mocha": "^11.1.0",
+    "nyc": "^17.1.0",
     "sinon": "^19.0.2"
   }
 }

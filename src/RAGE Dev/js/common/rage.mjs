@@ -7,6 +7,9 @@ import {ResourceManager} from './rage_modules/resource-manager.mjs'
 import {Matrix} from './rage_modules/matrix.mjs'
 import {Vector2, Vector3, Vector4} from './rage_modules/vector.mjs'
 import {Material, Texture} from './rage_modules/material.mjs'
+import {Vertex2D, Vertex3D} from './rage_modules/vertex.mjs'
+import {Mesh} from './rage_modules/mesh.mjs'
+import {Model} from './rage_modules/model.mjs'
 
 
 class RAGE {
@@ -273,5 +276,19 @@ class RAGE {
 
 
 
-export {RAGE, log, Matrix, Vector2, Vector3, Vector4, redTriangleSample}
+export {
+    RAGE, 
+    log, 
+    Matrix, 
+    Vector2, 
+    Vector3, 
+    Vector4,
+    Material,
+    Texture, 
+    Vertex2D,
+    Vertex3D,
+    Mesh,
+    Model,
+    redTriangleSample
+}
 
