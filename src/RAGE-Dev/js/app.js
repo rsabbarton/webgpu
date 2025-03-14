@@ -12,7 +12,6 @@ log(rage)
 
 setListeners()
 main()
-setTimeout(()=>{runAll()}, 1000)
 
 const myShaders = {
     label: 'my shaders',
@@ -42,27 +41,41 @@ async function main(){
 
     //const crateId = rage.createImageTexture('crate', '../Resources/Images/crate.jpg')
     //log(crateId)
-
+    rage.setDebugMode(true)
     rage.setVertexType(rage.def.VERTEX_TYPE_3DUVC)
     rage.setViewMode(rage.def.VIEW_MODE_3D_PERSPECTIVE)
     rage.setShaderMode(rage.def.SHADER_MODE_V3D_FUV)
 
     let moduleId = await rage.createShaderModule(redTriangleSample)
-    let module2 = await rage.createShaderModule(myShaders) 
+    let module2 = await rage.createShaderModule(myShaders)
     let pipelineId = await rage.createPipeline('myPipe', moduleId, 'vs', 'fs')
     let pipeline2 = await rage.createPipeline('myPipe2', module2, 'vs', 'fs')
-    let renderPassDescriptorId = await rage.createRenderPassDescriptor('my render pass', [0.0,0.0,0.0,1.0])
-    
-    const pass = rage.createRenderPass(renderPassDescriptorId) 
+    let rpdId = await rage.createRenderPassDescriptor('my render pass', [0.0,0.0,0.0,1.0])
 
-    pass.setPipeline(rage.getPipeline(pipelineId))
-    pass.draw(3)
-    pass.setPipeline(rage.getPipeline(pipeline2))
-    pass.draw(3)
-
-    rage.endRenderPass()
+    let pipelines = [rage.getPipeline(pipelineId), rage.getPipeline(pipeline2)]
+    render(rpdId, pipelines)
 }
 
+function render(rpdId, pipelines){
+  
+    // CODE: INCOMPLETE
+    // UNIT: FALSE
+    // DOCS: FALSE
+
+    // Single Render Frame
+    const pass = rage.createRenderPass(rpdId)
+    
+    pass.setPipeline(pipelines[0])
+    pass.draw(3)
+    pass.setPipeline(pipelines[1])
+    pass.draw(3)  
+    
+    rage.endRenderPass()
+
+    //window.requestAnimationFrame(()=>{render(rpdId, pipelines)})
+    setTimeout(()=>{render(rpdId, pipelines)}, 1000/400)
+
+}
 
 
 function setListeners(){

@@ -33,10 +33,18 @@ class RAGE {
         this.adapter = false
         this.device = false
         this.presentationFormat = false
+        this.metrics = {
+            lastFramecount: 0,
+            framerate: 0,
+            framecount: 0,
+            lastRunTimeStamp: 0
+        }
         
         this.materials = new Array()
 
         this.resourceManager = false
+
+        this.debugMode = false
     }
 
     async isSupported(){
@@ -55,6 +63,15 @@ class RAGE {
         // DOCS: FALSE
         log(text)
     }
+
+    setDebugMode(mode){
+        // CODE: INCOMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+        this.debugMode = mode
+        this.updateMetrics()
+    }
+
 
     async init(canvas){
         // CODE: INCOMPLETE
@@ -270,7 +287,72 @@ class RAGE {
         const commandBuffer = this.currentEncoder.finish()
         this.device.queue.submit([commandBuffer])
 
+        this.metrics.framecount++
+
         this.currentRenderPass = false
+    
+        if(this.debugMode){
+            let debug
+            if(!document.getElementById('debug')){
+                debug = document.createElement('div')
+                document.body.appendChild(debug)
+            } else {
+                debug = document.getElementById('debug')
+            }
+            debug.id = 'debug'
+            debug.style.position = 'absolute'
+            debug.style.top = '0'
+            debug.style.left = '0'
+            debug.style.color = 'white'
+            debug.style.backgroundColor = 'black'
+            debug.style.padding = '5px'
+            debug.style.fontFamily = 'monospace'
+            debug.innerHTML = this.getDebugInfo()
+            
+        }   
+    
+    }
+
+    updateMetrics(){
+        // CODE: INCOMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+
+        //console.log('updating metrics')
+        //console.log(this.metrics)
+
+        let currentTimeStamp = performance.now()
+        let timeDiff = currentTimeStamp - this.metrics.lastRunTimeStamp
+        this.metrics.lastRunTimeStamp = currentTimeStamp
+        let framecount = this.metrics.framecount - this.metrics.lastFramecount
+        this.metrics.framerate = framecount / (timeDiff / 1000)
+        this.metrics.lastFramecount = this.metrics.framecount
+        setTimeout(() => {
+            this.updateMetrics()
+        }
+        , 1000)
+    }
+
+    getDebugInfo(){
+        // CODE: INCOMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+
+        let moduleCount = this.modules.length
+        let pipelineCount = this.pipelines.length
+        let renderPassDescriptorCount = this.renderPassDescriptors.length
+        let materialsCount = this.materials.length
+
+
+        let info = `--- Debug Info ---<br>
+        Module Count: ${moduleCount}<br>
+        Pipeline Count: ${pipelineCount}<br>
+        Render Pass Descriptor Count: ${renderPassDescriptorCount}<br>
+        Materials Count: ${materialsCount}<br>
+        <br>
+        FrameRate: ${this.metrics.framerate}<br>
+       `
+        return info
     }
 }
 

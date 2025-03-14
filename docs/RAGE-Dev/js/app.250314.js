@@ -12,6 +12,7 @@ log(rage)
 
 setListeners()
 main()
+setTimeout(()=>{runAll()}, 1000)
 
 const myShaders = {
     label: 'my shaders',
@@ -47,35 +48,21 @@ async function main(){
     rage.setShaderMode(rage.def.SHADER_MODE_V3D_FUV)
 
     let moduleId = await rage.createShaderModule(redTriangleSample)
-    let module2 = await rage.createShaderModule(myShaders)
+    let module2 = await rage.createShaderModule(myShaders) 
     let pipelineId = await rage.createPipeline('myPipe', moduleId, 'vs', 'fs')
     let pipeline2 = await rage.createPipeline('myPipe2', module2, 'vs', 'fs')
-    let rpdId = await rage.createRenderPassDescriptor('my render pass', [0.0,0.0,0.0,1.0])
-
-    let pipelines = [rage.getPipeline(pipelineId), rage.getPipeline(pipeline2)]
-    render(rpdId, pipelines)
-}
-
-function render(rpdId, pipelines){
-  
-    // CODE: INCOMPLETE
-    // UNIT: FALSE
-    // DOCS: FALSE
-
-    // Single Render Frame
-    const pass = rage.createRenderPass(rpdId)
+    let renderPassDescriptorId = await rage.createRenderPassDescriptor('my render pass', [0.0,0.0,0.0,1.0])
     
-    pass.setPipeline(pipelines[0])
+    const pass = rage.createRenderPass(renderPassDescriptorId) 
+
+    pass.setPipeline(rage.getPipeline(pipelineId))
     pass.draw(3)
-    pass.setPipeline(pipelines[1])
-    pass.draw(3)  
-    
+    pass.setPipeline(rage.getPipeline(pipeline2))
+    pass.draw(3)
+
     rage.endRenderPass()
-
-    //window.requestAnimationFrame(()=>{render(rpdId, pipelines)})
-    setTimeout(()=>{render(rpdId, pipelines)}, 1000/400)
-
 }
+
 
 
 function setListeners(){

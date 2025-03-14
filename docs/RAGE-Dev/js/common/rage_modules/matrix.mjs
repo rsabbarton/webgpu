@@ -197,7 +197,8 @@ export class Matrix {
         // CODE: COMPLETE
         // UNIT: FALSE
         // DOCS: FALSE
-        dst = new Float32Array(16);
+        let m = this.matrix
+        let dst = new Float32Array(16);
 
         const m00 = m[0 * 4 + 0];
         const m01 = m[0 * 4 + 1];
@@ -347,11 +348,12 @@ export class Matrix {
         // CODE: INCOMPLETE
         // UNIT: FALSE
         // DOCS: FALSE
-        dst = this.matrix
+        let dst = this.matrix
         dst[ 0] = sx;  dst[ 1] = 0;   dst[ 2] = 0;    dst[ 3] = 0;
         dst[ 4] = 0;   dst[ 5] = sy;  dst[ 6] = 0;    dst[ 7] = 0;
         dst[ 8] = 0;   dst[ 9] = 0;   dst[10] = sz;   dst[11] = 0;
         dst[12] = 0;   dst[13] = 0;   dst[14] = 0;    dst[15] = 1;
+        //this.matrix = dst.slice()
         return this
     }
 
@@ -461,16 +463,15 @@ export class Matrix {
         return this
     }
     
-    prettyPrint(){
+    getPrettyString(){
         // CODE: COMPLETE
         // UNIT: TRUE
         // DOCS: FALSE
         let m = this.matrix
-        let textRepresentation = `       
+        return `       
 ${m[0]} ${m[4]} ${m[8]} ${m[12]}
 ${m[1]} ${m[5]} ${m[9]} ${m[13]}
 ${m[2]} ${m[6]} ${m[10]} ${m[14]}
 ${m[3]} ${m[7]} ${m[11]} ${m[15]}`
-        log(textRepresentation)
     }
 }

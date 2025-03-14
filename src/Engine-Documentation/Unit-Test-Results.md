@@ -41,6 +41,24 @@
 #### ✔ Should create a perspective matrix
    
 #### ✔ Should create an orthographic matrix
+   
+#### ✔ Should copy from another matrix
+   
+#### ✔ Should multiply by another matrix
+   
+#### ✔ Should invert a matrix
+   
+#### ✔ Should create a translation matrix
+   
+#### ✔ Should create a scaling matrix
+   
+#### ✔ Should create a rotation matrix around X axis
+   
+#### ✔ Should create a rotation matrix around Y axis
+   
+#### ✔ Should create a rotation matrix around Z axis
+   
+#### ✔ Should return a pretty printable string representation of the matrix
 
 ##  Mesh
    
@@ -67,6 +85,95 @@
 #### ✔ Should remove a mesh by index
    
 #### ✔ Should compile render buffers
+
+##  RAGE Constants
+   
+#### ✔ Should have correct X_AXIS value
+   
+#### ✔ Should have correct Y_AXIS value
+   
+#### ✔ Should have correct Z_AXIS value
+   
+#### ✔ Should have correct VERTEX_TYPE_2D value
+   
+#### ✔ Should have correct VERTEX_TYPE_3D value
+   
+#### ✔ Should have correct VERTEX_TYPE_2DUV value
+   
+#### ✔ Should have correct VERTEX_TYPE_3DUV value
+   
+#### ✔ Should have correct VERTEX_TYPE_2DUVC value
+   
+#### ✔ Should have correct VERTEX_TYPE_3DUVC value
+   
+#### ✔ Should have correct VERTEX_TYPE_3DUVN value
+   
+#### ✔ Should have correct VERTEX_TYPE_3DUVCN value
+   
+#### ✔ Should have correct SHADER_TYPE_V3D_FCOL value
+   
+#### ✔ Should have correct SHADER_TYPE_V3D_FTEX value
+   
+#### ✔ Should have correct SHADER_TYPE_V3D_FTEXCOL value
+   
+#### ✔ Should have correct VIEW_MODE_3D_PERSPECTIVE value
+   
+#### ✔ Should have correct VIEW_MODE_2D value
+   
+#### ✔ Should have correct VIEW_MODE_3D_FIXED value
+   
+#### ✔ Should have correct MATRIX_TYPE_IDENTITY value
+   
+#### ✔ Should have correct MATRIX_TYPE_PERSPECTIVE value
+   
+#### ✔ Should have correct MATRIX_TYPE_ORTHOGRAPHIC value
+   
+#### ✔ Should have correct MATRIX_TYPE_ROTATION value
+   
+#### ✔ Should have correct MATRIX_TYPE_TRANSLATION value
+   
+#### ✔ Should return true for existing definitions
+   
+#### ✔ Should return false for non-existing definitions
+
+##  rage_errors
+   
+#### ✔ Should log "Forbidden" for error code 403
+   
+#### ✔ Should log "Not Found" for error code 404
+   
+#### ✔ Should log "Unknown error code: <code>" for unknown error codes
+
+##  Colour3DShader
+   
+#### ✔ Should have the correct label
+   
+#### ✔ Should contain vertex shader code
+   
+#### ✔ Should contain fragment shader code
+   
+#### ✔ Should return the correct vertex positions
+   
+#### ✔ Should return the correct fragment color
+
+##  utils.mjs
+##    hexToRgb
+     
+#### ✔ Should convert hex to rgb correctly
+     
+#### ✔ Should handle hex with alpha correctly
+##    rgbToHex
+     
+#### ✔ Should convert rgb to hex correctly
+##    rgbaToHex
+     
+#### ✔ Should convert rgba to hex correctly
+##    degToRad
+     
+#### ✔ Should convert degrees to radians correctly
+##    radToDeg
+     
+#### ✔ Should convert radians to degrees correctly
 
 ##  Vector2
    
@@ -174,6 +281,26 @@
    
 #### ✔ Should initialize normal to (0, 0, 1)
 
+##  RAGE
+   
+#### ✔ Should initialize with default values
+   
+#### ✔ Should create a matrix
+   
+#### ✔ Should create a 2D vector
+   
+#### ✔ Should create a 3D vector
+   
+#### ✔ Should create a 4D vector
+   
+#### ✔ Should create a material
+   
+#### ✔ Should set vertex type
+   
+#### ✔ Should set view mode
+   
+#### ✔ Should set shader mode
 
-  75 passing (106ms)
+
+  131 passing (128ms)
 
