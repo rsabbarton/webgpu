@@ -172,11 +172,21 @@
 <li><a href="#mesh">Mesh</a></li>
 <li><a href="#triplet">Triplet</a></li>
 <li><a href="#model">Model</a></li>
+<li><a href="#rage-constants">RAGE Constants</a></li>
+<li><a href="#rage_errors">rage_errors</a></li>
+<li><a href="#colour3dshader">Colour3DShader</a></li>
+<li><a href="#utils.mjs">utils.mjs</a></li>
+<li><a href="#hextorgb">hexToRgb</a></li>
+<li><a href="#rgbtohex">rgbToHex</a></li>
+<li><a href="#rgbatohex">rgbaToHex</a></li>
+<li><a href="#degtorad">degToRad</a></li>
+<li><a href="#radtodeg">radToDeg</a></li>
 <li><a href="#vector2">Vector2</a></li>
 <li><a href="#vector3">Vector3</a></li>
 <li><a href="#vector4">Vector4</a></li>
 <li><a href="#vertex2d">Vertex2D</a></li>
 <li><a href="#vertex3d">Vertex3D</a></li>
+<li><a href="#rage">RAGE</a></li>
 </ul>
 </nav>
 <h2 id="custom-assertion-module">Custom Assertion Module</h2>
@@ -210,6 +220,25 @@ matrix</h4>
 perspective matrix</h4>
 <h4 id="should-create-an-orthographic-matrix">✔ Should create an
 orthographic matrix</h4>
+<h4 id="should-copy-from-another-matrix">✔ Should copy from another
+matrix</h4>
+<h4 id="should-multiply-by-another-matrix">✔ Should multiply by another
+matrix</h4>
+<h4 id="should-invert-a-matrix">✔ Should invert a matrix</h4>
+<h4 id="should-create-a-translation-matrix">✔ Should create a
+translation matrix</h4>
+<h4 id="should-create-a-scaling-matrix">✔ Should create a scaling
+matrix</h4>
+<h4 id="should-create-a-rotation-matrix-around-x-axis">✔ Should create a
+rotation matrix around X axis</h4>
+<h4 id="should-create-a-rotation-matrix-around-y-axis">✔ Should create a
+rotation matrix around Y axis</h4>
+<h4 id="should-create-a-rotation-matrix-around-z-axis">✔ Should create a
+rotation matrix around Z axis</h4>
+<h4
+id="should-return-a-pretty-printable-string-representation-of-the-matrix">✔
+Should return a pretty printable string representation of the
+matrix</h4>
 <h2 id="mesh">Mesh</h2>
 <h4
 id="should-initialize-with-an-empty-triplets-array-and-a-default-material">✔
@@ -235,6 +264,91 @@ correct mesh count</h4>
 index</h4>
 <h4 id="should-compile-render-buffers">✔ Should compile render
 buffers</h4>
+<h2 id="rage-constants">RAGE Constants</h2>
+<h4 id="should-have-correct-x_axis-value">✔ Should have correct X_AXIS
+value</h4>
+<h4 id="should-have-correct-y_axis-value">✔ Should have correct Y_AXIS
+value</h4>
+<h4 id="should-have-correct-z_axis-value">✔ Should have correct Z_AXIS
+value</h4>
+<h4 id="should-have-correct-vertex_type_2d-value">✔ Should have correct
+VERTEX_TYPE_2D value</h4>
+<h4 id="should-have-correct-vertex_type_3d-value">✔ Should have correct
+VERTEX_TYPE_3D value</h4>
+<h4 id="should-have-correct-vertex_type_2duv-value">✔ Should have
+correct VERTEX_TYPE_2DUV value</h4>
+<h4 id="should-have-correct-vertex_type_3duv-value">✔ Should have
+correct VERTEX_TYPE_3DUV value</h4>
+<h4 id="should-have-correct-vertex_type_2duvc-value">✔ Should have
+correct VERTEX_TYPE_2DUVC value</h4>
+<h4 id="should-have-correct-vertex_type_3duvc-value">✔ Should have
+correct VERTEX_TYPE_3DUVC value</h4>
+<h4 id="should-have-correct-vertex_type_3duvn-value">✔ Should have
+correct VERTEX_TYPE_3DUVN value</h4>
+<h4 id="should-have-correct-vertex_type_3duvcn-value">✔ Should have
+correct VERTEX_TYPE_3DUVCN value</h4>
+<h4 id="should-have-correct-shader_type_v3d_fcol-value">✔ Should have
+correct SHADER_TYPE_V3D_FCOL value</h4>
+<h4 id="should-have-correct-shader_type_v3d_ftex-value">✔ Should have
+correct SHADER_TYPE_V3D_FTEX value</h4>
+<h4 id="should-have-correct-shader_type_v3d_ftexcol-value">✔ Should have
+correct SHADER_TYPE_V3D_FTEXCOL value</h4>
+<h4 id="should-have-correct-view_mode_3d_perspective-value">✔ Should
+have correct VIEW_MODE_3D_PERSPECTIVE value</h4>
+<h4 id="should-have-correct-view_mode_2d-value">✔ Should have correct
+VIEW_MODE_2D value</h4>
+<h4 id="should-have-correct-view_mode_3d_fixed-value">✔ Should have
+correct VIEW_MODE_3D_FIXED value</h4>
+<h4 id="should-have-correct-matrix_type_identity-value">✔ Should have
+correct MATRIX_TYPE_IDENTITY value</h4>
+<h4 id="should-have-correct-matrix_type_perspective-value">✔ Should have
+correct MATRIX_TYPE_PERSPECTIVE value</h4>
+<h4 id="should-have-correct-matrix_type_orthographic-value">✔ Should
+have correct MATRIX_TYPE_ORTHOGRAPHIC value</h4>
+<h4 id="should-have-correct-matrix_type_rotation-value">✔ Should have
+correct MATRIX_TYPE_ROTATION value</h4>
+<h4 id="should-have-correct-matrix_type_translation-value">✔ Should have
+correct MATRIX_TYPE_TRANSLATION value</h4>
+<h4 id="should-return-true-for-existing-definitions">✔ Should return
+true for existing definitions</h4>
+<h4 id="should-return-false-for-non-existing-definitions">✔ Should
+return false for non-existing definitions</h4>
+<h2 id="rage_errors">rage_errors</h2>
+<h4 id="should-log-forbidden-for-error-code-403">✔ Should log
+“Forbidden” for error code 403</h4>
+<h4 id="should-log-not-found-for-error-code-404">✔ Should log “Not
+Found” for error code 404</h4>
+<h4 id="should-log-unknown-error-code-for-unknown-error-codes">✔ Should
+log “Unknown error code: <code>” for unknown error codes</h4>
+<h2 id="colour3dshader">Colour3DShader</h2>
+<h4 id="should-have-the-correct-label">✔ Should have the correct
+label</h4>
+<h4 id="should-contain-vertex-shader-code">✔ Should contain vertex
+shader code</h4>
+<h4 id="should-contain-fragment-shader-code">✔ Should contain fragment
+shader code</h4>
+<h4 id="should-return-the-correct-vertex-positions">✔ Should return the
+correct vertex positions</h4>
+<h4 id="should-return-the-correct-fragment-color">✔ Should return the
+correct fragment color</h4>
+<h2 id="utils.mjs">utils.mjs</h2>
+<h2 id="hextorgb">hexToRgb</h2>
+<h4 id="should-convert-hex-to-rgb-correctly">✔ Should convert hex to rgb
+correctly</h4>
+<h4 id="should-handle-hex-with-alpha-correctly">✔ Should handle hex with
+alpha correctly</h4>
+<h2 id="rgbtohex">rgbToHex</h2>
+<h4 id="should-convert-rgb-to-hex-correctly">✔ Should convert rgb to hex
+correctly</h4>
+<h2 id="rgbatohex">rgbaToHex</h2>
+<h4 id="should-convert-rgba-to-hex-correctly">✔ Should convert rgba to
+hex correctly</h4>
+<h2 id="degtorad">degToRad</h2>
+<h4 id="should-convert-degrees-to-radians-correctly">✔ Should convert
+degrees to radians correctly</h4>
+<h2 id="radtodeg">radToDeg</h2>
+<h4 id="should-convert-radians-to-degrees-correctly">✔ Should convert
+radians to degrees correctly</h4>
 <h2 id="vector2">Vector2</h2>
 <h4 id="should-create-a-vector2-with-given-x-and-y">✔ Should create a
 Vector2 with given x and y</h4>
@@ -331,6 +445,17 @@ Vertex3D with given x, y, and z</h4>
 0)</h4>
 <h4 id="should-initialize-normal-to-0-0-1">✔ Should initialize normal to
 (0, 0, 1)</h4>
-<p>75 passing (106ms)</p>
+<h2 id="rage">RAGE</h2>
+<h4 id="should-initialize-with-default-values">✔ Should initialize with
+default values</h4>
+<h4 id="should-create-a-matrix">✔ Should create a matrix</h4>
+<h4 id="should-create-a-2d-vector">✔ Should create a 2D vector</h4>
+<h4 id="should-create-a-3d-vector">✔ Should create a 3D vector</h4>
+<h4 id="should-create-a-4d-vector">✔ Should create a 4D vector</h4>
+<h4 id="should-create-a-material">✔ Should create a material</h4>
+<h4 id="should-set-vertex-type">✔ Should set vertex type</h4>
+<h4 id="should-set-view-mode">✔ Should set view mode</h4>
+<h4 id="should-set-shader-mode">✔ Should set shader mode</h4>
+<p>131 passing (128ms)</p>
 </body>
 </html>

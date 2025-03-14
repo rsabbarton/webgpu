@@ -25,18 +25,18 @@ class Mesh {
         this.material = material
     }
 
-    getVertex(index){
+    getTriplet(index){
         // CODE: INCOMPLETE
         // UNIT: FALSE
         // DOCS: FALSE
-        return this.vertices[index]
+        return this.triplets[index]
     }
 
-    getVertices(){
+    getTriplets(){
         // CODE: INCOMPLETE
         // UNIT: FALSE
         // DOCS: FALSE
-        return this.vertices
+        return this.triplets
     }
 
     getMaterial(){
@@ -50,9 +50,26 @@ class Mesh {
         // CODE: INCOMPLETE
         // UNIT: FALSE
         // DOCS: FALSE
-        return this.vertices.length
+        return this.triplets.length * 3
     }
 
+    loadFromObjectArray(vxa){
+        // CODE: INCOMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+        for (let i = 0; i < vxa.length; i += 3){
+            const v1 = new Vertex3D(vxa[i].x, vxa[i].y, vxa[i].z)
+            v1.setUV(vxa[i].u, vxa[i].v)
+            v1.setColor(vxa[i].r, vxa[i].g, vxa[i].b, vxa[i].a)
+            const v2 = new Vertex3D(vxa[i + 1].x, vxa[i + 1].y, vxa[i + 1].z)
+            v2.setUV(vxa[i + 1].u, vxa[i + 1].v)
+            v2.setColor(vxa[i + 1].r, vxa[i + 1].g, vxa[i + 1].b, vxa[i + 1].a)
+            const v3 = new Vertex3D(vxa[i + 2].x, vxa[i + 2].y, vxa[i + 2].z)
+            v3.setUV(vxa[i + 2].u, vxa[i + 2].v)
+            v3.setColor(vxa[i + 2].r, vxa[i + 2].g, vxa[i + 2].b, vxa[i + 2].a)
+            this.addTriplet(v1, v2, v3)
+        }
+    }
 
 }
 
@@ -76,6 +93,9 @@ class Triplet {
         const b = this.v2.position.sub(this.v1.position)
         const c = this.v3.position.sub(this.v1.position)
         this.normal = b.cross(c).normalize()
+        this.v1.setNormal(this.normal)
+        this.v2.setNormal(this.normal)
+        this.v3.setNormal(this.normal)
     }
 }
 
