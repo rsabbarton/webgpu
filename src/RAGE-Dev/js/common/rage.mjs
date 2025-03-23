@@ -10,13 +10,18 @@ import {Material, Texture} from './rage_modules/material.mjs'
 import {Vertex2D, Vertex3D} from './rage_modules/vertex.mjs'
 import {Mesh} from './rage_modules/mesh.mjs'
 import {Model} from './rage_modules/model.mjs'
-
+import { SceneGraph, SceneNode, Transform } from './rage_modules/scenegraph.mjs'
+import { degToRad, radToDeg } from "./rage_modules/utils.mjs"
+import { cube } from "./rage_modules/primatives.mjs"
 
 class RAGE {
     constructor(){
         // CODE: INCOMPLETE
         // UNIT: FALSE
         // DOCS: FALSE
+        this.var = {}
+        this.primitives = {}
+        this.primitives.cube = cube
         this.def = constants
         this.constants = constants
         this.vertexType = false
@@ -45,6 +50,8 @@ class RAGE {
         this.resourceManager = false
 
         this.debugMode = false
+
+        this.lastFrameTime = 0.0
     }
 
     async isSupported(){
@@ -179,6 +186,48 @@ class RAGE {
         return new Vector4(x,y,z,a)
     }
 
+    createVertex(x, y, z){
+        // CODE: COMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+        return new Vertex3D(x, y, z)
+    }
+
+    createMesh(){
+        // CODE: COMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+        return new Mesh()
+    }
+
+    createModel(){
+        // CODE: COMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+        return new Model()
+    }
+
+    createSceneGraph(){
+        // CODE: COMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+        return new SceneGraph()
+    }
+    
+    createSceneNode(name){
+        // CODE: COMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+        return new SceneNode(name)
+    }
+
+    createTransform(){
+        // CODE: COMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+        return new Transform()
+    }
+
     
 
     getPipeline(id) { 
@@ -212,7 +261,7 @@ class RAGE {
     }
 
 
-    async createPipeline(label, moduleId, vsEntry, fsEntry){
+    async createPipeline(label, moduleId){
         // CODE: INCOMPLETE
         // UNIT: FALSE
         // DOCS: FALSE
@@ -221,11 +270,9 @@ class RAGE {
             label: label,
             layout: 'auto',
             vertex: {
-            entryPoint: vsEntry,
             module: this.modules[moduleId],
             },
             fragment: {
-            entryPoint: fsEntry,
             module: this.modules[moduleId],
             targets: [{ format: this.presentationFormat }],
             },
@@ -235,11 +282,148 @@ class RAGE {
         return id
     }
 
+    async createMatrixUniformBuffer(label){
+        // CODE: INCOMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+        log('Creating Matrix Uniform Buffer')
+        const buffer = await this.device.createBuffer({
+            label: label,
+            size: 16 * 4,
+            usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
+        })
+        return buffer
+    }
+
+    async createVertexBuffer(name, data){
+        // CODE: INCOMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+        log('Creating Vertex Buffer')
+        log(data.byteLength)
+        log(data.length)
+        const buffer =  await this.device.createBuffer({
+            label: name,
+            size: data.byteLength,
+            usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST
+        })
+        return buffer
+    }
+
+    async createColorBuffer(name, data){
+        // CODE: INCOMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+        log('Creating Color Buffer')
+        const buffer = await this.device.createBuffer({
+            label: name,
+            size: data.byteLength,
+            usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST
+        })
+        //new Float32Array(buffer.getMappedRange()).set(new Float32Array(data))
+        //buffer.unmap()
+        return buffer
+    }
+
+    async createUVBuffer(name, data){
+        // CODE: INCOMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+        log('Creating UV Buffer')
+        const buffer = await this.device.createBuffer({
+            label: name,
+            size: data.byteLength,
+            usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST,
+            //mappedAtCreation: true,
+        })
+        //new Float32Array(buffer.getMappedRange()).set(new Float32Array(data))
+        //buffer.unmap()
+        return buffer
+    }
+
+    async createNormalBuffer(name, data){
+        // CODE: INCOMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+        log('Creating Normal Buffer')
+        const buffer = await this.device.createBuffer({
+            label: name,
+            size: data.byteLength,
+            usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST,
+            //mappedAtCreation: true,
+        })
+        //new Float32Array(buffer.getMappedRange()).set(new Float32Array(data))
+        //buffer.unmap()
+        return buffer
+    }
+
+    async create3DBufferedPipeline(label, moduleId){
+        // CODE: INCOMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+        log('creating pipeline')
+
+        let module = this.modules[moduleId]
+        
+        const pipeline = await this.device.createRenderPipeline({
+            label: '2 attributes with color',
+            layout: 'auto',
+            vertex: {
+              module,
+              buffers: [
+                {
+                  arrayStride: 12,
+                  stepMode: 'vertex',
+                  attributes: [
+                    {shaderLocation: 0, offset: 0, format: 'float32x3'},  // position
+                  ],
+                },
+                {
+                  arrayStride: 4 * 4,
+                  stepMode: 'vertex',
+                  attributes: [
+                    {shaderLocation: 1, offset: 0, format: 'float32x4'},  // color
+                  ],
+                },
+                {
+                  arrayStride: 8,
+                  attributes: [
+                    {shaderLocation: 2, offset: 0, format: 'float32x2'},  // uv
+                  ],
+                },
+                {
+                  arrayStride: 12,
+                  stepMode: 'vertex',
+                  attributes: [
+                    {shaderLocation: 3, offset: 0, format: 'float32x3'},  // normal
+                  ],
+                },
+              ],
+            },
+            fragment: {
+              module,
+              targets: [{ format: this.presentationFormat }],
+            },
+            primitive: {
+              cullMode: 'back',
+            },
+            depthStencil: {
+              depthWriteEnabled: true,
+              depthCompare: 'less',
+              format: 'depth24plus',
+            },
+          });
+
+
+        let id = this.pipelines.length
+        this.pipelines.push(pipeline)
+        return id
+    }
+
     async createRenderPassDescriptor(label, clearColor4f){
         // CODE: INCOMPLETE
         // UNIT: FALSE
         // DOCS: FALSE
-        log('Creating renderPassDescriptor')
         const renderPassDescriptor = {
             label: label,
             colorAttachments: [
@@ -249,43 +433,65 @@ class RAGE {
                 loadOp: 'clear',
                 storeOp: 'store',
                 },
+
             ],
+            depthStencilAttachment: {
+                // view: <- to be filled out when we render
+                depthClearValue: 1.0,
+                depthLoadOp: 'clear',
+                depthStoreOp: 'store',
+            },
         }
-        let id = this.renderPassDescriptors.length
-        this.renderPassDescriptors.push(renderPassDescriptor)
-        return id
-
-    }
-
-
-    createRenderPass(renderPassDescriptorId){
-        // CODE: INCOMPLETE
-        // UNIT: FALSE
-        // DOCS: FALSE
-        if(this.currentRenderPass){
-            log('renderPass already exists - using existing Render Pass')
-            return this.currentRenderPass
-        }
-
-        this.renderPassDescriptors[renderPassDescriptorId].colorAttachments[0].view =
-            this.context.getCurrentTexture().createView()
         
-        this.currentEncoder = this.device.createCommandEncoder({ label: 'our encoder' })
-        this.currentRenderPass = this.currentEncoder.beginRenderPass(this.renderPassDescriptors[renderPassDescriptorId])
-        return this.currentRenderPass
+        return renderPassDescriptor
+
+    }
+
+
+    async createRenderPass(renderPassDescriptor){
+        // CODE: INCOMPLETE
+        // UNIT: FALSE
+        // DOCS: FALSE
+
+        this.lastFrameTime = performance.now()
+
+        this.canvasTexture = this.context.getCurrentTexture()
+
+        renderPassDescriptor.colorAttachments[0].view =
+            this.context.getCurrentTexture().createView()
+
+        if (!this.depthTexture ||
+            this.depthTexture.width !== this.canvasTexture.width ||
+            this.depthTexture.height !== this.canvasTexture.height) {
+            if (this.depthTexture) {
+                this.depthTexture.destroy();
+            }
+            
+            this.depthTexture = this.device.createTexture({
+                size: [this.canvasTexture.width, this.canvasTexture.height],
+                format: 'depth24plus',
+                usage: GPUTextureUsage.RENDER_ATTACHMENT,
+            });
+        }
+
+        renderPassDescriptor.depthStencilAttachment.view = this.depthTexture.createView();
+
+        this.currentEncoder = await this.device.createCommandEncoder({ label: 'our encoder' })
+        return await this.currentEncoder.beginRenderPass(renderPassDescriptor)
+        
 
 
     }
 
-    endRenderPass() {
+    async endRenderPass(pass) {
 
         // CODE: INCOMPLETE
         // UNIT: FALSE
         // DOCS: FALSE
-        this.currentRenderPass.end()
+        pass.end()
     
-        const commandBuffer = this.currentEncoder.finish()
-        this.device.queue.submit([commandBuffer])
+        const commandBuffer = await this.currentEncoder.finish()
+        await this.device.queue.submit([commandBuffer])
 
         this.metrics.framecount++
 
@@ -340,17 +546,17 @@ class RAGE {
 
         let moduleCount = this.modules.length
         let pipelineCount = this.pipelines.length
-        let renderPassDescriptorCount = this.renderPassDescriptors.length
         let materialsCount = this.materials.length
 
 
         let info = `--- Debug Info ---<br>
         Module Count: ${moduleCount}<br>
         Pipeline Count: ${pipelineCount}<br>
-        Render Pass Descriptor Count: ${renderPassDescriptorCount}<br>
         Materials Count: ${materialsCount}<br>
         <br>
-        FrameRate: ${this.metrics.framerate}<br>
+        FrameRate: ${Math.round(this.metrics.framerate*100)/100}<br>
+        <br>
+        ${JSON.stringify(rage.var, '<br>', '<br>')}
        `
         return info
     }
@@ -371,6 +577,12 @@ export {
     Vertex3D,
     Mesh,
     Model,
+    SceneGraph,
+    SceneNode,
+    Transform,
+    degToRad,
+    radToDeg,
+    cube,
     redTriangleSample
 }
 

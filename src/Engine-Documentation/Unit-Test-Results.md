@@ -63,6 +63,40 @@
 ##  Mesh
    
 #### ✔ Should initialize with an empty triplets array and a default material
+   
+#### ✔ Should import a mesh from an array of vertices
+   
+#### ✔ Should export a float32 array of vertices
+   
+#### ✔ Should export a float32 array of normals
+   
+#### ✔ Should export a uint8 array of colors
+
+##  Mesh
+   
+#### ✔ Should initialize with an empty triplets array and a default material
+   
+#### ✔ Should add triplets correctly
+   
+#### ✔ Should set material correctly
+   
+#### ✔ Should return the correct triplet
+   
+#### ✔ Should return the correct number of vertices
+   
+#### ✔ Should load from object array correctly
+   
+#### ✔ Should return correct Float32Array for XYZ
+   
+#### ✔ Should return correct Float32Array for UV
+   
+#### ✔ Should return correct Uint8ClampedArray for color
+   
+#### ✔ Should return correct Float32Array for normals
+   
+#### ✔ Should return correct transformed vertex array
+   
+#### ✔ Should return correct transformed normal array
 
 ##  Triplet
    
@@ -85,6 +119,32 @@
 #### ✔ Should remove a mesh by index
    
 #### ✔ Should compile render buffers
+
+##  Model
+   
+#### ✔ Should initialize with an empty meshes array
+   
+#### ✔ Should add a mesh to the meshes array
+   
+#### ✔ Should return a mesh by index
+   
+#### ✔ Should return all meshes
+   
+#### ✔ Should return the correct mesh count
+   
+#### ✔ Should remove a mesh by index
+   
+#### ✔ Should compile render buffers
+   
+#### ✔ Should return the correct vertex count
+   
+#### ✔ Should return the correct vertex buffer data
+   
+#### ✔ Should return the correct normal buffer data
+   
+#### ✔ Should return the correct UV buffer data
+   
+#### ✔ Should return the correct color buffer data
 
 ##  RAGE Constants
    
@@ -143,6 +203,56 @@
 #### ✔ Should log "Not Found" for error code 404
    
 #### ✔ Should log "Unknown error code: <code>" for unknown error codes
+
+##  SceneGraph
+   
+#### ✔ Should initialize with default values
+   
+#### ✔ Should add and remove nodes
+    1) Should create view matrix
+
+##  SceneNode
+   
+#### ✔ Should initialize with default values
+   
+#### ✔ Should add and remove child nodes
+   
+#### ✔ Should update all child nodes
+   
+#### ✔ Should render all child nodes
+   
+#### ✔ Should attach and detach models
+
+##  Transform
+   
+#### ✔ Should initialize with default values
+   
+#### ✔ Should update matrix on position change
+   
+#### ✔ Should update matrix on rotation change
+   
+#### ✔ Should update matrix on scale change
+
+##  SceneNode
+   
+#### ✔ Should initialize with default values
+   
+#### ✔ Should add and remove child nodes
+   
+#### ✔ Should update all child nodes
+   
+#### ✔ Should render all child nodes
+   
+#### ✔ Should attach and detach models
+   
+#### ✔ Should return the correct vertex count
+   
+#### ✔ Should return the correct vertex buffer data
+   
+#### ✔ Should return the correct normal buffer data
+   
+#### ✔ Should return the correct UV buffer data
+    2) Should return the correct vertex color buffer data
 
 ##  Colour3DShader
    
@@ -302,5 +412,24 @@
 #### ✔ Should set shader mode
 
 
-  131 passing (131ms)
+  179 passing (166ms)
+  2 failing
+
+  1) SceneGraph
+##       Should create view matrix:
+##     ReferenceError: log is not defined
+##      at SceneGraph.createViewMatrix (file:///home/richard/dev/webgpu/src/RAGE-Dev/js/common/rage_modules/scenegraph.mjs:69:9)
+##      at Context.<anonymous> (file:///home/richard/dev/webgpu/src/RAGE-Dev/js/common/rage_modules/scenegraph.test.mjs:34:20)
+##      at process.processImmediate (node:internal/timers:491:21)
+
+  2) SceneNode
+##       Should return the correct vertex color buffer data:
+##     TypeError: model.getColorBufferData is not a function
+##      at file:///home/richard/dev/webgpu/src/RAGE-Dev/js/common/rage_modules/scenegraph.mjs:147:71
+##      at Array.forEach (<anonymous>)
+##      at SceneNode.getVertexColorBufferData (file:///home/richard/dev/webgpu/src/RAGE-Dev/js/common/rage_modules/scenegraph.mjs:147:21)
+##      at Context.<anonymous> (file:///home/richard/dev/webgpu/src/RAGE-Dev/js/common/rage_modules/scenegraph.test.mjs:230:27)
+##      at process.processImmediate (node:internal/timers:491:21)
+
+
 

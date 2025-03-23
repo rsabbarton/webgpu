@@ -1,15 +1,12 @@
 import {assertEqual, assertTypedArray} from "./assert.mjs"
 
- 
-const degToRad = d => d * Math.PI / 180
-const radToDeg = r => r * 180 / Math.PI
-
-const X_AXIS = 101
-const Y_AXIS = 102
-const Z_AXIS = 103
-
-
 export class Matrix {
+    static X_AXIS = 101
+    static Y_AXIS = 102
+    static Z_AXIS = 103
+    static degToRad = d => d * Math.PI / 180
+    static radToDeg = r => r * 180 / Math.PI
+
     constructor(){
         // CODE: COMPLETE
         // UNIT: TRUE
@@ -374,13 +371,13 @@ export class Matrix {
         // UNIT: TRUE
         // DOCS: FALSE
         switch(axis){
-            case X_AXIS:
+            case Matrix.X_AXIS:
                 this.rotationX(angleInRadians)
                 break
-            case Y_AXIS:
+            case Matrix.Y_AXIS:
                 this.rotationY(angleInRadians)
                 break
-            case Z_AXIS:
+            case Matrix.Z_AXIS:
                 this.rotationZ(angleInRadians)
                 break
         }
@@ -394,13 +391,13 @@ export class Matrix {
         // DOCS: FALSE
         let r = new Matrix()
         switch(axis){
-            case X_AXIS:
+            case Matrix.X_AXIS:
                 r.rotationX(angleInRadians)
                 break
-            case Y_AXIS:
+            case Matrix.Y_AXIS:
                 r.rotationY(angleInRadians)
                 break
-            case Z_AXIS:
+            case Matrix.Z_AXIS:
                 r.rotationZ(angleInRadians)
                 break
         }

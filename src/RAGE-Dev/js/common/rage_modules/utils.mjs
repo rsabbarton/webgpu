@@ -30,3 +30,29 @@ export const degToRad = d => d * Math.PI / 180;
 export const radToDeg = r => r * 180 / Math.PI;
 
   
+export function Float32Concat(first, second)
+{
+    var result = new Float32Array(first.length + second.length);
+    result.set(first);
+    result.set(second, first.length);
+
+    return result;
+}
+
+export function Uint8Concat(first, second)
+{
+    var result = new Uint8Array(first.length + second.length);
+    result.set(first);
+    result.set(second, first.length);
+
+    return result;
+}
+
+export function Uint8ClampedConcat(first, second)
+{
+    var result = new Uint8ClampedArray(first.length + second.length);
+    result.set(first);
+    result.set(second, first.length);
+
+    return result;
+}   
