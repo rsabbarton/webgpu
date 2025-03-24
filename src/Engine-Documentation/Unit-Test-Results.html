@@ -170,10 +170,16 @@
 <li><a href="#material">Material</a></li>
 <li><a href="#matrix">Matrix</a></li>
 <li><a href="#mesh">Mesh</a></li>
+<li><a href="#mesh-1">Mesh</a></li>
 <li><a href="#triplet">Triplet</a></li>
 <li><a href="#model">Model</a></li>
+<li><a href="#model-1">Model</a></li>
 <li><a href="#rage-constants">RAGE Constants</a></li>
 <li><a href="#rage_errors">rage_errors</a></li>
+<li><a href="#scenegraph">SceneGraph</a></li>
+<li><a href="#scenenode">SceneNode</a></li>
+<li><a href="#transform">Transform</a></li>
+<li><a href="#scenenode-1">SceneNode</a></li>
 <li><a href="#colour3dshader">Colour3DShader</a></li>
 <li><a href="#utils.mjs">utils.mjs</a></li>
 <li><a href="#hextorgb">hexToRgb</a></li>
@@ -244,6 +250,41 @@ matrix</h4>
 id="should-initialize-with-an-empty-triplets-array-and-a-default-material">✔
 Should initialize with an empty triplets array and a default
 material</h4>
+<h4 id="should-import-a-mesh-from-an-array-of-vertices">✔ Should import
+a mesh from an array of vertices</h4>
+<h4 id="should-export-a-float32-array-of-vertices">✔ Should export a
+float32 array of vertices</h4>
+<h4 id="should-export-a-float32-array-of-normals">✔ Should export a
+float32 array of normals</h4>
+<h4 id="should-export-a-uint8-array-of-colors">✔ Should export a uint8
+array of colors</h4>
+<h2 id="mesh-1">Mesh</h2>
+<h4
+id="should-initialize-with-an-empty-triplets-array-and-a-default-material-1">✔
+Should initialize with an empty triplets array and a default
+material</h4>
+<h4 id="should-add-triplets-correctly">✔ Should add triplets
+correctly</h4>
+<h4 id="should-set-material-correctly">✔ Should set material
+correctly</h4>
+<h4 id="should-return-the-correct-triplet">✔ Should return the correct
+triplet</h4>
+<h4 id="should-return-the-correct-number-of-vertices">✔ Should return
+the correct number of vertices</h4>
+<h4 id="should-load-from-object-array-correctly">✔ Should load from
+object array correctly</h4>
+<h4 id="should-return-correct-float32array-for-xyz">✔ Should return
+correct Float32Array for XYZ</h4>
+<h4 id="should-return-correct-float32array-for-uv">✔ Should return
+correct Float32Array for UV</h4>
+<h4 id="should-return-correct-uint8clampedarray-for-color">✔ Should
+return correct Uint8ClampedArray for color</h4>
+<h4 id="should-return-correct-float32array-for-normals">✔ Should return
+correct Float32Array for normals</h4>
+<h4 id="should-return-correct-transformed-vertex-array">✔ Should return
+correct transformed vertex array</h4>
+<h4 id="should-return-correct-transformed-normal-array">✔ Should return
+correct transformed normal array</h4>
 <h2 id="triplet">Triplet</h2>
 <h4
 id="should-initialize-with-three-vertices-and-a-default-normal-vector">✔
@@ -264,6 +305,30 @@ correct mesh count</h4>
 index</h4>
 <h4 id="should-compile-render-buffers">✔ Should compile render
 buffers</h4>
+<h2 id="model-1">Model</h2>
+<h4 id="should-initialize-with-an-empty-meshes-array-1">✔ Should
+initialize with an empty meshes array</h4>
+<h4 id="should-add-a-mesh-to-the-meshes-array-1">✔ Should add a mesh to
+the meshes array</h4>
+<h4 id="should-return-a-mesh-by-index-1">✔ Should return a mesh by
+index</h4>
+<h4 id="should-return-all-meshes-1">✔ Should return all meshes</h4>
+<h4 id="should-return-the-correct-mesh-count-1">✔ Should return the
+correct mesh count</h4>
+<h4 id="should-remove-a-mesh-by-index-1">✔ Should remove a mesh by
+index</h4>
+<h4 id="should-compile-render-buffers-1">✔ Should compile render
+buffers</h4>
+<h4 id="should-return-the-correct-vertex-count">✔ Should return the
+correct vertex count</h4>
+<h4 id="should-return-the-correct-vertex-buffer-data">✔ Should return
+the correct vertex buffer data</h4>
+<h4 id="should-return-the-correct-normal-buffer-data">✔ Should return
+the correct normal buffer data</h4>
+<h4 id="should-return-the-correct-uv-buffer-data">✔ Should return the
+correct UV buffer data</h4>
+<h4 id="should-return-the-correct-color-buffer-data">✔ Should return the
+correct color buffer data</h4>
 <h2 id="rage-constants">RAGE Constants</h2>
 <h4 id="should-have-correct-x_axis-value">✔ Should have correct X_AXIS
 value</h4>
@@ -320,6 +385,51 @@ return false for non-existing definitions</h4>
 Found” for error code 404</h4>
 <h4 id="should-log-unknown-error-code-for-unknown-error-codes">✔ Should
 log “Unknown error code: <code>” for unknown error codes</h4>
+<h2 id="scenegraph">SceneGraph</h2>
+<h4 id="should-initialize-with-default-values">✔ Should initialize with
+default values</h4>
+<h4 id="should-add-and-remove-nodes">✔ Should add and remove nodes</h4>
+<pre><code>1) Should create view matrix</code></pre>
+<h2 id="scenenode">SceneNode</h2>
+<h4 id="should-initialize-with-default-values-1">✔ Should initialize
+with default values</h4>
+<h4 id="should-add-and-remove-child-nodes">✔ Should add and remove child
+nodes</h4>
+<h4 id="should-update-all-child-nodes">✔ Should update all child
+nodes</h4>
+<h4 id="should-render-all-child-nodes">✔ Should render all child
+nodes</h4>
+<h4 id="should-attach-and-detach-models">✔ Should attach and detach
+models</h4>
+<h2 id="transform">Transform</h2>
+<h4 id="should-initialize-with-default-values-2">✔ Should initialize
+with default values</h4>
+<h4 id="should-update-matrix-on-position-change">✔ Should update matrix
+on position change</h4>
+<h4 id="should-update-matrix-on-rotation-change">✔ Should update matrix
+on rotation change</h4>
+<h4 id="should-update-matrix-on-scale-change">✔ Should update matrix on
+scale change</h4>
+<h2 id="scenenode-1">SceneNode</h2>
+<h4 id="should-initialize-with-default-values-3">✔ Should initialize
+with default values</h4>
+<h4 id="should-add-and-remove-child-nodes-1">✔ Should add and remove
+child nodes</h4>
+<h4 id="should-update-all-child-nodes-1">✔ Should update all child
+nodes</h4>
+<h4 id="should-render-all-child-nodes-1">✔ Should render all child
+nodes</h4>
+<h4 id="should-attach-and-detach-models-1">✔ Should attach and detach
+models</h4>
+<h4 id="should-return-the-correct-vertex-count-1">✔ Should return the
+correct vertex count</h4>
+<h4 id="should-return-the-correct-vertex-buffer-data-1">✔ Should return
+the correct vertex buffer data</h4>
+<h4 id="should-return-the-correct-normal-buffer-data-1">✔ Should return
+the correct normal buffer data</h4>
+<h4 id="should-return-the-correct-uv-buffer-data-1">✔ Should return the
+correct UV buffer data</h4>
+<pre><code>2) Should return the correct vertex color buffer data</code></pre>
 <h2 id="colour3dshader">Colour3DShader</h2>
 <h4 id="should-have-the-correct-label">✔ Should have the correct
 label</h4>
@@ -446,8 +556,8 @@ Vertex3D with given x, y, and z</h4>
 <h4 id="should-initialize-normal-to-0-0-1">✔ Should initialize normal to
 (0, 0, 1)</h4>
 <h2 id="rage">RAGE</h2>
-<h4 id="should-initialize-with-default-values">✔ Should initialize with
-default values</h4>
+<h4 id="should-initialize-with-default-values-4">✔ Should initialize
+with default values</h4>
 <h4 id="should-create-a-matrix">✔ Should create a matrix</h4>
 <h4 id="should-create-a-2d-vector">✔ Should create a 2D vector</h4>
 <h4 id="should-create-a-3d-vector">✔ Should create a 3D vector</h4>
@@ -456,6 +566,23 @@ default values</h4>
 <h4 id="should-set-vertex-type">✔ Should set vertex type</h4>
 <h4 id="should-set-view-mode">✔ Should set view mode</h4>
 <h4 id="should-set-shader-mode">✔ Should set shader mode</h4>
-<p>131 passing (131ms)</p>
+<p>179 passing (166ms) 2 failing</p>
+<ol type="1">
+<li><p>SceneGraph ## Should create view matrix: ## ReferenceError: log
+is not defined ## at SceneGraph.createViewMatrix
+(file:///home/richard/dev/webgpu/src/RAGE-Dev/js/common/rage_modules/scenegraph.mjs:69:9)
+## at Context.<anonymous>
+(file:///home/richard/dev/webgpu/src/RAGE-Dev/js/common/rage_modules/scenegraph.test.mjs:34:20)
+## at process.processImmediate (node:internal/timers:491:21)</p></li>
+<li><p>SceneNode ## Should return the correct vertex color buffer data:
+## TypeError: model.getColorBufferData is not a function ## at
+file:///home/richard/dev/webgpu/src/RAGE-Dev/js/common/rage_modules/scenegraph.mjs:147:71
+## at Array.forEach (<anonymous>) ## at
+SceneNode.getVertexColorBufferData
+(file:///home/richard/dev/webgpu/src/RAGE-Dev/js/common/rage_modules/scenegraph.mjs:147:21)
+## at Context.<anonymous>
+(file:///home/richard/dev/webgpu/src/RAGE-Dev/js/common/rage_modules/scenegraph.test.mjs:230:27)
+## at process.processImmediate (node:internal/timers:491:21)</p></li>
+</ol>
 </body>
 </html>

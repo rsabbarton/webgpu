@@ -16,8 +16,8 @@ class Logger {
         let div = document.createElement('div')
         div.innerText = a
         console.log(a)
-
-        outputDiv.prepend(div)
+        if(outputDiv)
+            outputDiv.prepend(div)
     }
 }
 

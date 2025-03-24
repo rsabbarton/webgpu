@@ -209,7 +209,21 @@
 #### ✔ Should initialize with default values
    
 #### ✔ Should add and remove nodes
-    1) Should create view matrix
+##Matrix {
+##  matrix: Float32Array(16) [
+    0.0010288800112903118,                  0,
+                        0,                  0,
+                        0, 0.6173279881477356,
+                        0,                  0,
+                        0,                  0,
+    0.0022271715570241213,                 -1,
+                        0,                  0,
+      0.10022271424531937,                  0
+  ],
+##  stack: []
+}
+   
+#### ✔ Should create view matrix
 
 ##  SceneNode
    
@@ -252,7 +266,8 @@
 #### ✔ Should return the correct normal buffer data
    
 #### ✔ Should return the correct UV buffer data
-    2) Should return the correct vertex color buffer data
+   
+#### ✔ Should return the correct vertex color buffer data
 
 ##  Colour3DShader
    
@@ -412,24 +427,5 @@
 #### ✔ Should set shader mode
 
 
-  179 passing (166ms)
-  2 failing
-
-  1) SceneGraph
-##       Should create view matrix:
-##     ReferenceError: log is not defined
-##      at SceneGraph.createViewMatrix (file:///home/richard/dev/webgpu/src/RAGE-Dev/js/common/rage_modules/scenegraph.mjs:69:9)
-##      at Context.<anonymous> (file:///home/richard/dev/webgpu/src/RAGE-Dev/js/common/rage_modules/scenegraph.test.mjs:34:20)
-##      at process.processImmediate (node:internal/timers:491:21)
-
-  2) SceneNode
-##       Should return the correct vertex color buffer data:
-##     TypeError: model.getColorBufferData is not a function
-##      at file:///home/richard/dev/webgpu/src/RAGE-Dev/js/common/rage_modules/scenegraph.mjs:147:71
-##      at Array.forEach (<anonymous>)
-##      at SceneNode.getVertexColorBufferData (file:///home/richard/dev/webgpu/src/RAGE-Dev/js/common/rage_modules/scenegraph.mjs:147:21)
-##      at Context.<anonymous> (file:///home/richard/dev/webgpu/src/RAGE-Dev/js/common/rage_modules/scenegraph.test.mjs:230:27)
-##      at process.processImmediate (node:internal/timers:491:21)
-
-
+  181 passing (159ms)
 

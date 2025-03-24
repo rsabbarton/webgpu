@@ -137,7 +137,7 @@ describe('SceneNode', () => {
             getVertexBufferData: sinon.stub().returns(new Float32Array([0, 0, 0, 1, 0, 0, 0, 1, 0])),
             getNormalBufferData: sinon.stub().returns(new Float32Array([0, 0, 1, 0, 0, 1, 0, 0, 1])),
             getUVBufferData: sinon.stub().returns(new Float32Array([0, 0, 1, 0, 0, 1])),
-            getVertexColorBufferData: sinon.stub().returns(new Uint8ClampedArray([255, 0, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255]))
+            getColorBufferData: sinon.stub().returns(new Float32Array([255, 0, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255]))
         };
         modelViewMatrix = new Matrix();
         modelViewMatrix.createIdentity();
@@ -228,11 +228,11 @@ describe('SceneNode', () => {
     it('should return the correct vertex color buffer data', () => {
         node.attachModel(model);
         const data = node.getVertexColorBufferData();
-        expect(data).to.deep.equal(new Uint8ClampedArray([255, 0, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255]));
+        expect(data).to.deep.equal(new Float32Array([255, 0, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255]));
 
         node.addChild(childNode);
         childNode.attachModel(model);
         const combinedData = node.getVertexColorBufferData();
-        expect(combinedData).to.deep.equal(new Uint8ClampedArray([255, 0, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255]));
+        expect(combinedData).to.deep.equal(new Float32Array([255, 0, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255]));
     });
 });

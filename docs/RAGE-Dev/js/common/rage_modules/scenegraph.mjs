@@ -1,6 +1,7 @@
 import { Vector3 } from './vector.mjs';
 import { Matrix } from './matrix.mjs';
 import { Float32Concat, Uint8ClampedConcat } from './utils.mjs';
+import { log } from './logger.mjs'
 
 
 class SceneGraph {
